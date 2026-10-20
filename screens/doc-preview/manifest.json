@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "backend": "native",
+  "rasterEngine": "libreoffice",
+  "source": "saved",
+  "inputPath": "C:\\Users\\arosl\\Desktop\\site\\Мой-портал_рекомендации_кратко.docx",
+  "sourceSha256": "f84027f7415ce3e0e100f66f61175d68fc86cf8c61855ee5ed27caaac9c50d6a",
+  "dpi": 100,
+  "pageCount": 3,
+  "images": [
+    {
+      "index": 1,
+      "page": 1,
+      "path": "C:\\Users\\arosl\\Desktop\\site\\screens\\doc-preview\\page-0001.png",
+      "width": 827,
+      "height": 1170,
+      "rectangle": {
+        "x": 0,
+        "y": 0,
+        "width": 793.7333333333333,
+        "height": 1122.5333333333333
+      },
+      "byteLength": 67138
+    },
+    {
+      "index": 2,
+      "page": 2,
+      "path": "C:\\Users\\arosl\\Desktop\\site\\screens\\doc-preview\\page-0002.png",
+      "width": 827,
+      "height": 1170,
+      "rectangle": {
+        "x": 0,
+        "y": 0,
+        "width": 793.7333333333333,
+        "height": 1122.5333333333333
+      },
+      "byteLength": 75973
+    }
+  ],
+  "missingFonts": [
+    "Courier"
+  ]
+}

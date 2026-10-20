@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мой-портал.ру — молодёжный портал Тюмени и Тюменской области</title>
+<meta name="description" content="Мой-портал.ру — официальное молодёжное СМИ Тюменской области. Учёба, деньги, работа, жильё, люди и выходные. Афиша, спецпроекты, подкасты и сервисы для тех, кому 14–35.">
+<link rel="preload" href="assets/fonts/Unbounded-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Onest-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('mp:theme');
+        var dark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) r.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/></svg>">
+</head>
+<body>
+
+<!-- ===================== ИКОНКИ ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-base" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20.2 20.2 16 16"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-rub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v16M9 4h4.6a4 4 0 0 1 0 8H9M6 15.5h9"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></symbol>
+  <symbol id="i-work" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9.5 21v-6h5v6"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5 12 4l10 4.5-10 4.5z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-loc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 8.5a5 5 0 0 1-10 0C7 9 9 7 9 7s.4 2.2 1.6 3C11.4 8.4 12 5.5 12 3z"/></symbol>
+</svg>
+
+<!-- ===================== ТОПБАР ===================== -->
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <div class="topbar__left">
+      <span class="topbar__dot"></span>
+      <span>Тюмень · четверг, 15 октября</span>
+      <span>·</span>
+      <span>Официальное СМИ Тюменской области</span>
+    </div>
+    <div class="topbar__right">
+      <a href="page.html?p=about">О портале</a>
+      <a href="https://t.me/moi_portal" target="_blank" rel="noopener">Телеграм</a>
+      <a href="https://vk.com/moiportal" target="_blank" rel="noopener">ВК</a>
+      <span class="topbar__age">12+</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ХЕДЕР ===================== -->
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Мой-портал.ру — на главную">
+      <span class="brand__word">Мой&nbsp;портал</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+
+    <nav class="nav" aria-label="Разделы портала">
+      <a href="index.html" class="is-active">Главное</a>
+      <a href="razdel.html?r=work">Работа</a>
+      <a href="razdel.html?r=study">Учёба</a>
+      <a href="afisha.html">Афиша</a>
+      <a href="razdel.html?r=psy">Психология</a>
+      <a href="razdel.html?r=opp">Возможности</a>
+      <a href="razdel.html?r=city">Люди</a>
+    </nav>
+
+    <div class="hdr__actions">
+      <button class="icon-btn" data-search-open type="button" aria-label="Поиск по порталу (клавиша /)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg>
+      </button>
+      <button class="icon-btn" data-theme-toggle type="button">
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="btn btn--ghost btn--sm" href="index.html#podpiska">Подписаться</a>
+      <button class="icon-btn burger" data-menu-open type="button" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== МОБИЛЬНОЕ МЕНЮ ===================== -->
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="mmenu__top">
+    <a class="brand" href="index.html"><span class="brand__word">Мой&nbsp;портал</span><span class="brand__dot"></span></a>
+    <button class="icon-btn" data-menu-close type="button" aria-label="Закрыть меню">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Мобильная навигация">
+    <a href="index.html">Главное <span>01</span></a>
+    <a href="razdel.html?r=work">Работа <span>02</span></a>
+    <a href="razdel.html?r=study">Учёба <span>03</span></a>
+    <a href="afisha.html">Афиша <span>04</span></a>
+    <a href="razdel.html?r=psy">Психология <span>05</span></a>
+    <a href="razdel.html?r=opp">Возможности <span>06</span></a>
+    <a href="razdel.html?r=city">Люди <span>07</span></a>
+    <a href="lenta.html">Лента <span>08</span></a>
+    <a href="services.html">Сервисы <span>09</span></a>
+  </nav>
+  <div class="mmenu__foot">
+    <a class="btn btn--sm" href="index.html#podpiska">Подписаться</a>
+    <button class="btn btn--ghost btn--sm" data-theme-toggle type="button">Сменить тему</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ===================== ПЕРВЫЙ ЭКРАН ===================== -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__left">
+      <p class="eyebrow">Молодёжный портал Тюмени · с 2017 года</p>
+      <h1 class="hero__title">
+        <span>Тюмень —</span>
+        <span>это <em class="accent">ты</em></span>
+      </h1>
+      <p class="lead">Пишем о том, что реально влияет на твою жизнь: учёба, деньги, работа, жильё, люди и выходные. Без пресс-релизов и «важных встреч».</p>
+      <div class="hero__cta">
+        <a class="btn btn--lg magnet" href="lenta.html">
+          Смотреть ленту
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="afisha.html">Афиша выходных</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__num"><span data-count="85000">85 000</span><sup>+</sup></div>
+          <div class="stat__lbl">читателей в месяц</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">9 лет</div>
+          <div class="stat__lbl">в региональной повестке</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">#1</div>
+          <div class="stat__lbl">молодёжное СМИ области</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="hero-card tilt" href="article.html?id=work-1">
+      <div class="hero-card__media">
+        <span class="sticker sticker--rot sticker-abs">Главное сегодня</span>
+        <img data-parallax="0.05" src="assets/img/career.jpg" width="1273" height="476" alt="Студентка на рабочем месте в Тюмени">
+      </div>
+      <div class="hero-card__body">
+        <span class="rubric">Как жить</span>
+        <h2 class="hero-card__title">«Я чувствую, что я на своём месте»: как тюменские студенты строят карьеру без диплома</h2>
+        <p class="meta"><span>15 октября</span><span class="dot"></span><span>7 минут</span><span class="dot"></span><span>12 400 прочитали</span></p>
+      </div>
+      <div class="hero-card__foot">
+        <div class="reactions">
+          <button class="react" data-react type="button" aria-pressed="false" aria-label="Реакция «огонь»"><i>🔥</i><span class="js-count">184</span></button>
+          <button class="react" data-react type="button" aria-pressed="false" aria-label="Реакция «полезно»"><i>👌</i><span class="js-count">96</span></button>
+          <button class="react" data-react type="button" aria-pressed="false" aria-label="Реакция «вау»"><i>🤯</i><span class="js-count">31</span></button>
+        </div>
+        <svg style="width:18px;height:18px" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== БЕГУЩАЯ СТРОКА ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Гранты до 1,5 млн ₽ — приём заявок до 20 октября</span>
+    <span class="marquee__item">Афиша выходных: 18 событий</span>
+    <span class="marquee__item">Стипендии ТюмГУ выросли на 12%</span>
+    <span class="marquee__item">Набор в молодёжный медиацентр «Пионера»</span>
+    <span class="marquee__item">Бесплатные курсы по ИИ для студентов</span>
+    <span class="marquee__item">Гранты до 1,5 млн ₽ — приём заявок до 20 октября</span>
+    <span class="marquee__item">Афиша выходных: 18 событий</span>
+    <span class="marquee__item">Стипендии ТюмГУ выросли на 12%</span>
+    <span class="marquee__item">Набор в молодёжный медиацентр «Пионера»</span>
+    <span class="marquee__item">Бесплатные курсы по ИИ для студентов</span>
+  </div>
+</div>
+
+<!-- ===================== 01. ГЛАВНОЕ СЕЙЧАС ===================== -->
+<section class="section" id="glavnoe">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-left">
+        <span class="section__num">01</span>
+        <div>
+          <h2 class="section__title">Главное сейчас</h2>
+          <p class="section__sub">Что читают и обсуждают прямо сейчас — обновляется каждые 15 минут</p>
+        </div>
+      </div>
+      <a class="link-more" href="lenta.html">Вся лента <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="grid g-main">
+      <a class="card card--big reveal" href="article.html?id=afisha-1">
+        <div class="card__media">
+          <span class="sticker sticker-abs">18 событий</span>
+          <img src="assets/img/tyumen-barbie.jpg" width="1600" height="900" alt="Улица Тюмени в выходной">
+        </div>
+        <div class="card__body">
+          <span class="rubric">Афиша</span>
+          <h3 class="card__title">18 событий на выходных: 11 из них бесплатные</h3>
+          <p class="card__excerpt">Что делать в Тюмени с пятницы по воскресенье, если бюджет — ноль, или 300 ₽, или «хочется что-то настоящее».</p>
+          <p class="meta"><span>15 октября</span><span class="dot"></span><span>3 минуты</span><span class="dot"></span><span>16 000 прочитали</span></p>
+        </div>
+      </a>
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;padding:0 0 14px">
+          <svg style="width:16px;height:16px;color:var(--signal)" aria-hidden="true"><use href="#i-flame"/></svg>
+          <span style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">Сейчас читают</span>
+        </div>
+        <div class="stack">
+          <a class="stack__item" href="article.html?id=money-1">
+            <span class="stack__num">01</span>
+            <div>
+              <h3 class="stack__title">Налоговый вычет за спорт: как вернуть до 19 500 ₽</h3>
+              <p class="meta" style="margin-top:6px"><span>Работа</span><span class="dot"></span><span>5 минут</span></p>
+            </div>
+          </a>
+          <a class="stack__item" href="article.html?id=money-3">
+            <span class="stack__num">02</span>
+            <div>
+              <h3 class="stack__title">Стипендия в этом семестре: кому, сколько и когда придёт</h3>
+              <p class="meta" style="margin-top:6px"><span>Учёба</span><span class="dot"></span><span>6 минут</span></p>
+            </div>
+          </a>
+          <a class="stack__item" href="article.html?id=psy-1">
+            <span class="stack__num">03</span>
+            <div>
+              <h3 class="stack__title">Выгорание: семь признаков и что делать в первые две недели</h3>
+              <p class="meta" style="margin-top:6px"><span>Психология</span><span class="dot"></span><span>8 минут</span></p>
+            </div>
+          </a>
+          <a class="stack__item" href="article.html?id=work-1">
+            <span class="stack__num">04</span>
+            <div>
+              <h3 class="stack__title">«Я чувствую, что я на своём месте»: карьера без диплома</h3>
+              <p class="meta" style="margin-top:6px"><span>Работа</span><span class="dot"></span><span>7 минут</span></p>
+            </div>
+          </a>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="lenta.html" style="margin-top:18px">Смотреть ленту</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02. РАЗДЕЛЫ ===================== -->
+<section class="section" id="razdely">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-left">
+        <span class="section__num">02</span>
+        <div>
+          <h2 class="section__title">Разделы и инструменты</h2>
+          <p class="section__sub">Шесть задач, с которыми приходят. В каждом разделе — материалы и свой инструмент</p>
+        </div>
+      </div>
+      <a class="link-more" href="services.html">Все сервисы <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="ru" data-stagger>
+      <a class="rub-tile reveal" href="razdel.html?r=work">
+        <span class="rub-tile__n">01</span>
+        <span class="rub-tile__t">Работа</span>
+        <span class="rub-tile__d">Вакансии с гибким графиком, стажировки, подработка, вычеты и аренда</span>
+        <span class="rub-tile__srv">128 вакансий</span>
+        <span class="rub-tile__c">96 материалов <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="rub-tile reveal" href="razdel.html?r=study">
+        <span class="rub-tile__n">02</span>
+        <span class="rub-tile__t">Учёба</span>
+        <span class="rub-tile__d">ЕГЭ и ОГЭ, поступление, олимпиады, колледжи и стипендии</span>
+        <span class="rub-tile__srv">Калькулятор выплат</span>
+        <span class="rub-tile__c">51 материал <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="rub-tile reveal" href="afisha.html">
+        <span class="rub-tile__n">03</span>
+        <span class="rub-tile__t">Афиша</span>
+        <span class="rub-tile__d">Что делать в выходные: бесплатно, до 500 ₽ и с друзьями</span>
+        <span class="rub-tile__srv">Фильтры по цене</span>
+        <span class="rub-tile__c">18 событий <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="rub-tile reveal" href="razdel.html?r=psy">
+        <span class="rub-tile__n">04</span>
+        <span class="rub-tile__t">Психология</span>
+        <span class="rub-tile__d">Поговорить, выгорание, отношения — бесплатно и анонимно</span>
+        <span class="rub-tile__srv">Чат с психологом</span>
+        <span class="rub-tile__c">31 материал <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="rub-tile reveal" href="razdel.html?r=opp">
+        <span class="rub-tile__n">05</span>
+        <span class="rub-tile__t">Возможности</span>
+        <span class="rub-tile__d">Гранты, форумы, смены, конкурсы и волонтёрство — успей подать</span>
+        <span class="rub-tile__srv">Календарь заявок</span>
+        <span class="rub-tile__c">33 материала <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="rub-tile reveal" href="razdel.html?r=city">
+        <span class="rub-tile__n">06</span>
+        <span class="rub-tile__t">Люди</span>
+        <span class="rub-tile__d">Герои, места, маршруты, районы и аренда — город изнутри</span>
+        <span class="rub-tile__srv">Городская карта</span>
+        <span class="rub-tile__c">58 материалов <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+      </a>
+    </div>
+
+    <a class="serv-bar" href="services.html">
+      <div>
+        <div class="serv-bar__t">8 инструментов в одном кабинете</div>
+        <div class="serv-bar__d">Гранты, выплаты, работа, жильё, поступление, психолог, форумы и бонусы — без десяти вкладок и очередей</div>
+      </div>
+      <span class="btn btn--sm">Все сервисы <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== 03. АФИША ===================== -->
+<section class="section" id="afisha">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-left">
+        <span class="section__num">03</span>
+        <div>
+          <h2 class="section__title">Афиша выходных</h2>
+          <p class="section__sub">16–18 октября · 18 событий, из них 11 — бесплатно</p>
+        </div>
+      </div>
+      <a class="link-more" href="afisha.html">Вся афиша <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="events" style="padding-top:0">
+      <a class="ev reveal" href="afisha.html">
+        <div class="ev__media">
+          <div class="ev__date"><b>17</b><span>ОКТ</span></div>
+          <img src="assets/img/afisha-tehno.jpg" width="1273" height="476" alt="Мастер-класс по электронике">
+        </div>
+        <div class="ev__body">
+          <span class="rubric">Мастер-класс</span>
+          <h3 class="ev__title">Техно-лаборатория: собери своего робота за один вечер</h3>
+          <p class="ev__place"><svg style="width:13px;height:13px;vertical-align:-2px" aria-hidden="true"><use href="#i-loc"/></svg> Точка кипения, ул. Республики, 142</p>
+          <div class="ev__foot"><span class="price price--free">Бесплатно</span><span class="meta">18:30</span></div>
+        </div>
+      </a>
+      <a class="ev reveal" href="afisha.html">
+        <div class="ev__media">
+          <div class="ev__date"><b>18</b><span>ОКТ</span></div>
+          <img src="assets/img/afisha-craft.jpg" width="1273" height="476" alt="Встреча книжного клуба">
+        </div>
+        <div class="ev__body">
+          <span class="rubric">Встреча</span>
+          <h3 class="ev__title">Книжный своп и разговор о том, зачем читать в 2026</h3>
+          <p class="ev__place"><svg style="width:13px;height:13px;vertical-align:-2px" aria-hidden="true"><use href="#i-loc"/></svg> Библиотека им. Менделеева</p>
+          <div class="ev__foot"><span class="price price--free">Бесплатно</span><span class="meta">15:00</span></div>
+        </div>
+      </a>
+      <a class="ev reveal" href="afisha.html">
+        <div class="ev__media">
+          <div class="ev__date"><b>16</b><span>ОКТ</span></div>
+          <img src="assets/img/kino.jpg" width="1080" height="1080" alt="Показ фильма">
+        </div>
+        <div class="ev__body">
+          <span class="rubric">Кинопоказ</span>
+          <h3 class="ev__title">Ночь короткого метра: 12 фильмов молодых режиссёров</h3>
+          <p class="ev__place"><svg style="width:13px;height:13px;vertical-align:-2px" aria-hidden="true"><use href="#i-loc"/></svg> Дом кино, ул. Свердлова, 10</p>
+          <div class="ev__foot"><span class="price">300 ₽</span><span class="meta">21:00</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07. ДАЙДЖЕСТ ===================== -->
+<section class="section section--tight" id="podpiska">
+  <div class="wrap">
+    <div class="digest">
+      <div>
+        <h2 class="digest__title">Одно письмо<br><span class="accent">по средам</span></h2>
+        <p class="digest__sub">Пять вещей на неделю: какие выплаты изменились, куда подать заявку, что не пропустить на выходных. Без спама, отписка в один клик.</p>
+      </div>
+      <form class="digest__form" data-subscribe novalidate>
+        <div class="field">
+          <label class="sr-only" for="email">E-mail</label>
+          <input id="email" type="email" placeholder="твой e-mail" required>
+          <button class="btn" type="submit">Подписаться</button>
+        </div>
+        <label class="check">
+          <input type="checkbox" required>
+          <span>Согласен с <a href="page.html?p=terms" style="text-decoration:underline">правилами сайта</a> и обработкой персональных данных</span>
+        </label>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== ФУТЕР ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <span class="footer__plate"><span>Мой</span><span>портал</span></span>
+        <p class="footer__tag">Молодёжный информационный портал Тюмени и Тюменской области. Учредитель — ГАУ ДО ТО «Дворец творчества и спорта „Пионер“».</p>
+        <div class="footer__socials" style="margin-top:24px">
+          <a href="https://t.me/moi_portal" aria-label="Телеграм" target="_blank" rel="noopener">ТГ</a>
+          <a href="https://vk.com/moiportal" target="_blank" rel="noopener" aria-label="ВКонтакте">ВК</a>
+          <a href="https://www.tiktok.com/@moiportal72" target="_blank" rel="noopener" aria-label="ТикТок">ТТ</a>
+          <a href="https://www.youtube.com/@moi_portal" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+          <a href="mailto:moiporta.l@ya.ru" aria-label="Написать в редакцию"><svg style="width:15px;height:15px" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h4>Разделы</h4>
+          <a href="index.html">Главное</a>
+          <a href="lenta.html">Лента</a>
+          <a href="index.html#razdely">Все разделы</a>
+          <a href="afisha.html">Афиша</a>
+          <a href="services.html">Сервисы</a>
+          <a href="index.html#podpiska">Подписка</a>
+        </div>
+        <div>
+          <h4>Редакция</h4>
+          <a href="page.html?p=about">О портале</a>
+          <a href="page.html?p=rules">Правила и политика</a>
+          <a href="page.html?p=authors">Стать автором</a>
+          <a href="page.html?p=partners">Релизы</a>
+          <a href="page.html?p=partners">Сотрудничество</a>
+        </div>
+        <div>
+          <h4>Документы</h4>
+          <a href="page.html?p=privacy">Политика конфиденциальности</a>
+          <a href="page.html?p=privacy">Пользовательское соглашение</a>
+          <a href="page.html?p=license">Свидетельство СМИ</a>
+          <a href="ui-kit.html">Дизайн-система</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__legal">Свидетельство о регистрации СМИ «Молодёжный информационный портал Тюмени и Тюменской области Moi-portal.ru» Эл № ФС77-91432 от 28.04.2026, выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Росkomnadzor). Учредитель: Государственное автономное учреждение дополнительного образования Тюменской области «Дворец творчества и спорта «Пионер». Адрес редакции: 625000, Тюменская обл., г. Тюмень, ул. Хохрякова, 47.</p>
+      <div class="footer__meta">
+        <span>© <span data-year>2026</span> Мой-портал.ру · 12+</span>
+        <span>Прототип редизайна · демонстрационные данные</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/data2.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/render2.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/motion.js"></script>
+</body>
+</html>
