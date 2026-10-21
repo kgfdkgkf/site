@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="">
+<head>
+<meta charset="utf-8">
+<base href="../">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подкасты Мой-портал.ру — слушать онлайн</title>
+<meta name="description" content="Подкасты молодёжного портала Тюмени: музыка, истории, мистика, психология и разговоры о городе.">
+<link rel="preload" href="assets/fonts/Unbounded-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Onest-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('mp:theme');
+        var dark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) r.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0B0C'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF4416'/%3E%3C/svg%3E"><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/>
+</head>
+<body data-page="static" data-accent="pod">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20.2 20.2 16 16"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-loc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-pod" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3"/></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <div class="topbar__left">
+      <span class="topbar__dot"></span>
+      <span data-clock-date>Тюмень · пятница, 16 октября</span>
+      <span class="topbar__sep">·</span>
+      <span data-clock-time>12:00</span>
+      <span class="topbar__sep">·</span>
+      <span class="topbar__smi">Официальное СМИ Тюменской области</span>
+    </div>
+    <div class="topbar__right">
+      <a href="page/index.html?p=about">О портале</a>
+    </div>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Мой-портал.ру — на главную">
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--dark" src="assets/brand/logo-2.png" alt="Мой портал">
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--light" src="assets/brand/logo-1.png" alt="Мой портал">
+    </a>
+    <nav class="nav" aria-label="Разделы портала">
+      <a href="index.html">Главное</a>
+      <a href="work/index.html">Работа</a>
+      <a href="study/index.html">Учёба</a>
+      <a href="afisha/index.html" class="is-active">Афиша</a>
+      <a href="psy/index.html">Психология</a>
+      <a href="opp/index.html">Возможности</a>
+      <a href="feed/index.html">Лента</a>
+    </nav>
+    <div class="hdr__actions">
+      <a class="pod-btn" href="podcasts/index.html" data-podcasts aria-label="Подкасты портала" title="Подкасты">
+        <svg aria-hidden="true"><use href="#i-pod"/></svg>
+      </a>
+      <button class="icon-btn" data-search-open type="button" aria-label="Поиск по порталу (клавиша /)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg>
+      </button>
+      <button class="icon-btn" data-theme-toggle type="button">
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <div class="sub-wrap">
+        <button class="btn btn--ghost btn--sm" type="button" data-sub-toggle aria-expanded="false" aria-haspopup="true">Подписаться</button>
+        <div class="sub-menu" id="subMenu">
+          <a href="https://t.me/moi_portal" target="_blank" rel="noopener">Telegram <span>канал</span></a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener">ВКонтакте <span>паблик</span></a>
+          <a href="https://max.ru" target="_blank" rel="noopener">MAX <span>мессенджер</span></a>
+          <a href="https://www.youtube.com/@moi_portal" target="_blank" rel="noopener">YouTube <span>видео</span></a>
+          <span class="sub-menu__sep"></span>
+          <a href="index.html#podpiska">Письмо по средам <span>e-mail</span></a>
+        </div>
+      </div>
+      <button class="icon-btn burger" data-menu-open type="button" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="mmenu__top">
+    <a class="brand" href="index.html"><span class="brand__word">Мой&nbsp;портал</span><span class="brand__dot"></span></a>
+    <button class="icon-btn" data-menu-close type="button" aria-label="Закрыть меню"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <nav aria-label="Мобильная навигация">
+    <a href="index.html">Главное <span>01</span></a>
+    <a href="work/index.html">Работа <span>02</span></a>
+    <a href="study/index.html">Учёба <span>03</span></a>
+    <a href="afisha/index.html">Афиша <span>04</span></a>
+    <a href="psy/index.html">Психология <span>05</span></a>
+    <a href="opp/index.html">Возможности <span>06</span></a>
+    <a href="feed/index.html">Лента <span>07</span></a>
+    <a href="podcasts/index.html">Подкасты <span>08</span></a>
+    <a href="services/index.html">Сервисы <span>09</span></a>
+    <a href="lenta/index.html">Все материалы <span>10</span></a>
+  </nav>
+  <div class="mmenu__foot">
+    <a class="btn btn--sm" href="index.html#podpiska">Подписаться</a>
+    <button class="btn btn--ghost btn--sm" data-theme-toggle type="button">Сменить тему</button>
+  </div>
+</div>
+
+  <section class="page-head" data-accent="pod">
+    <div class="wrap">
+      <p class="eyebrow">Подкасты · 8 шоу · 92 эпизода</p>
+      <h1>Послушать</h1>
+      <p class="page-head__sub">Восемь шоу портала: музыка, истории, город, психология и разговоры с людьми, которые что-то делают в Тюмени. Слушай по дороге — эпизоды по 20–40 минут.</p>
+      <div class="stats" style="margin-top:26px;max-width:620px">
+        <div class="stat"><div class="stat__num">8</div><div class="stat__lbl">шоу</div></div>
+        <div class="stat"><div class="stat__num">92</div><div class="stat__lbl">эпизода</div></div>
+        <div class="stat"><div class="stat__num">29 000</div><div class="stat__lbl">прослушиваний</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="podcasts" id="podcasts">
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/pod-music.jpg" alt="/MUSIC" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Музыка</span>
+          <h2 class="podcast__t">/MUSIC</h2>
+          <p class="podcast__d">О независимых музыкантах Тюмени, ХМАО и ЯНАО: как записывают альбомы без лейбла и где играют.</p>
+          <p class="meta">29 эпизодов <span class="dot"></span> 42 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Как записать EP дома за 30 тысяч</span><span>18 мин</span></li><li><span>Тюменский построк: три инструмента и никакого вокала</span><span>19 мин</span></li><li><span>Гастроли без продюсера: честный опыт</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/pod-short.jpg" alt="Шоу коротких историй" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Истории</span>
+          <h2 class="podcast__t">Шоу коротких историй</h2>
+          <p class="podcast__d">Пять минут — одна история. Люди рассказывают то, что обычно остаётся за кадром.</p>
+          <p class="meta">9 эпизодов <span class="dot"></span> 24 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Как я переехал в Тюмень и никого не знал</span><span>18 мин</span></li><li><span>Первая смена в кофейне</span><span>19 мин</span></li><li><span>Возвращение домой после Москвы</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/pod-mystic.jpg" alt="Мистические истории Тюмени" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Город</span>
+          <h2 class="podcast__t">Мистические истории Тюмени</h2>
+          <p class="podcast__d">Городские легенды, старые дома и места, о которых не пишут путеводители.</p>
+          <p class="meta">6 эпизодов <span class="dot"></span> 31 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Дом с двойными стенами</span><span>18 мин</span></li><li><span>Что находят в старых подвалах</span><span>19 мин</span></li><li><span>Легенды Затюменского парка</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/team.jpg" alt="Изнанка" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Проекты</span>
+          <h2 class="podcast__t">Изнанка</h2>
+          <p class="podcast__d">По ту сторону проектов: как команды придумывают, падают и переделывают.</p>
+          <p class="meta">9 эпизодов <span class="dot"></span> 38 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Проект, который провалился дважды</span><span>18 мин</span></li><li><span>Как собрать команду из пяти человек</span><span>19 мин</span></li><li><span>Грант получили. Что дальше</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/psy.jpg" alt="Что тебя волнует?" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Психология</span>
+          <h2 class="podcast__t">Что тебя волнует?</h2>
+          <p class="podcast__d">Разговоры с психологами о том, что мешает спать, учиться и радоваться.</p>
+          <p class="meta">12 эпизодов <span class="dot"></span> 27 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Выгорание: первые две недели</span><span>18 мин</span></li><li><span>Как говорить «нет» без вины</span><span>19 мин</span></li><li><span>Тревога перед экзаменами</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/career.jpg" alt="Голос города" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Люди</span>
+          <h2 class="podcast__t">Голос города</h2>
+          <p class="podcast__d">Разговоры с теми, кто меняет Тюмень: от дворовых площадок до городских фестивалей.</p>
+          <p class="meta">14 эпизодов <span class="dot"></span> 35 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Как появился первый квартирник</span><span>18 мин</span></li><li><span>Что нужно, чтобы открыть своё место</span><span>19 мин</span></li><li><span>Город глазами 20-летнего</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/afisha-mama.jpg" alt="Разбор" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Деньги</span>
+          <h2 class="podcast__t">Разбор</h2>
+          <p class="podcast__d">Экономика простыми словами: аренда, зарплаты, выплаты и почему всё стоит столько.</p>
+          <p class="meta">8 эпизодов <span class="dot"></span> 22 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Почему аренда растёт каждый год</span><span>18 мин</span></li><li><span>Откуда берутся стипендии</span><span>19 мин</span></li><li><span>Сколько стоит поехать в отпуск</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article>
+      <article class="podcast">
+        <div class="podcast__cover"><img src="assets/img/tyumen-barbie.jpg" alt="Дорога" loading="lazy"><span class="podcast__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+        <div class="podcast__body">
+          <span class="rubric">Поездки</span>
+          <h2 class="podcast__t">Дорога</h2>
+          <p class="podcast__d">Куда уехать на выходные за 1000 рублей и что там смотреть.</p>
+          <p class="meta">5 эпизодов <span class="dot"></span> 29 мин</p>
+          <details class="podcast__eps">
+            <summary>Все эпизоды</summary>
+            <ul><li><span>Тобольск за один день</span><span>18 мин</span></li><li><span>Термальные источники: как добраться</span><span>19 мин</span></li><li><span>Ялуторовск без машины</span><span>20 мин</span></li></ul>
+          </details>
+        </div>
+      </article></div>
+  </div>
+
+  
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <img class="footer__logo footer__logo--white" src="assets/brand/logo-1.png" alt="Мой портал">
+        <img class="footer__logo footer__logo--black" src="assets/brand/logo-2.png" alt="Мой портал">
+        <p class="footer__tag">Молодёжный информационный портал Тюмени и Тюменской области. Учредитель — ГАУ ДО ТО «Дворец творчества и спорта „Пионер“».</p>
+        <div class="footer__socials" style="margin-top:24px">
+          <a href="https://t.me/moi_portal" target="_blank" rel="noopener" aria-label="Telegram">ТГ</a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener" aria-label="ВКонтакте">ВК</a>
+          <a href="https://www.tiktok.com/@moiportal72" target="_blank" rel="noopener" aria-label="ТикТок">ТТ</a>
+          <a href="https://max.ru" target="_blank" rel="noopener" aria-label="MAX">МАКС</a>
+          <a href="mailto:moiporta.l@ya.ru" aria-label="Почта"><svg style="width:15px;height:15px" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h4>Разделы</h4>
+          <a href="index.html">Главное</a>
+          <a href="lenta/index.html">Лента</a>
+          <a href="index.html#razdely">Все разделы</a>
+          <a href="afisha/index.html">Афиша</a>
+          <a href="services/index.html">Сервисы</a>
+          <a href="index.html#podpiska">Подписка</a>
+        </div>
+        <div>
+          <h4>Редакция</h4>
+          <a href="page/index.html?p=about">О портале</a>
+          <a href="page/index.html?p=rules">Правила и политика</a>
+          <a href="page/index.html?p=authors">Стать автором</a>
+          <a href="page/index.html?p=partners">Релизы</a>
+          <a href="page/index.html?p=partners">Сотрудничество</a>
+        </div>
+        <div>
+          <h4>Документы</h4>
+          <a href="page/index.html?p=privacy">Политика конфиденциальности</a>
+          <a href="page/index.html?p=terms">Пользовательское соглашение</a>
+          <a href="page/index.html?p=license">Свидетельство СМИ</a>
+          <a href="ui-kit/index.html">Дизайн-система</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__legal">Свидетельство о регистрации СМИ «Молодёжный информационный портал Тюмени и Тюменской области Moi-portal.ru» Эл № ФС77-91432 от 28.04.2026, выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор). Учредитель: Государственное автономное учреждение дополнительного образования Тюменской области «Дворец творчества и спорта «Пионер». Адрес редакции: 625000, Тюменская обл., г. Тюмень, ул. Хохрякова, 47.</p>
+      <div class="footer__meta">
+        <span>© <span data-year>2026</span> Мой-портал.ру · 12+</span>
+        <span>Прототип редизайна · демонстрационные данные</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/data2.js"></script>
+<script src="assets/js/blocks.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/render2.js"></script>
+<script src="assets/js/podcasts.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/motion.js"></script>
+</body>
+</html>

@@ -18,23 +18,23 @@
     aura.innerHTML = '<span></span><span></span>';
     hero.insertBefore(aura, hero.firstChild);
 
-    if (fine) {
-      const spot = document.createElement('div');
-      spot.className = 'spot';
-      spot.setAttribute('aria-hidden', 'true');
-      hero.insertBefore(spot, hero.firstChild);
+  }
 
-      let raf = null;
-      hero.addEventListener('mousemove', e => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          const r = hero.getBoundingClientRect();
-          hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-          hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-          raf = null;
-        });
-      }, { passive: true });
-    }
+  /* --- Пятно за курсором по всей странице -------------------------------- */
+  if (fine) {
+    const spot = document.createElement('div');
+    spot.className = 'spot-global';
+    spot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(spot);
+    let raf = null;
+    document.addEventListener('mousemove', e => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+        document.documentElement.style.setProperty('--my', e.clientY + 'px');
+        raf = null;
+      });
+    }, { passive: true });
   }
 
   /* --- Линии под заголовками секций ------------------------------------- */
@@ -73,46 +73,6 @@
       });
     }, { rootMargin: '-45% 0px -45% 0px' });
     sections.forEach(s => sio.observe(s));
-  }
-
-  /* --- Наклон и глубина карточек ---------------------------------------- */
-  if (fine) {
-    const targets = $$('.card, .ev, .person, .test, .pod');
-    targets.forEach(el => {
-      if (el.classList.contains('tilt')) return;
-      let raf = null;
-      el.addEventListener('mousemove', e => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          const r = el.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - .5;
-          const py = (e.clientY - r.top) / r.height - .5;
-          el.style.transform =
-            `perspective(1000px) rotateX(${(-py * 2.2).toFixed(2)}deg) rotateY(${(px * 2.6).toFixed(2)}deg) translateY(-4px)`;
-          raf = null;
-        });
-      }, { passive: true });
-      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-    });
-  }
-
-  /* --- Параллакс «рельса» цифр в статистике ----------------------------- */
-  const stats = $$('.stats');
-  if (stats.length) {
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        stats.forEach(s => {
-          const r = s.getBoundingClientRect();
-          if (r.bottom < 0 || r.top > window.innerHeight) return;
-          const k = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-          s.style.setProperty('--k', k.toFixed(3));
-        });
-        ticking = false;
-      });
-    }, { passive: true });
   }
 
   /* --- Плавное появление страницы --------------------------------------- */

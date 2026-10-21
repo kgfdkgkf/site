@@ -50,12 +50,12 @@
 
   /* --- 3. Поиск-оверлей -------------------------------------------------- */
   const HOT = [
-    ['Гранты до 1,5 млн ₽', '14 заявок', 'razdel.html?r=opp'],
-    ['Стипендии и выплаты', 'калькулятор', 'service.html?s=money'],
-    ['Аренда без депозита', 'гайд', 'service.html?s=home'],
-    ['Куда сходить бесплатно', '11 мест', 'afisha.html'],
-    ['Работа с гибким графиком', '128 вакансий', 'service.html?s=job'],
-    ['Психолог бесплатно', 'анонимно', 'service.html?s=psy']
+    ['Гранты до 1,5 млн ₽', '14 заявок', 'SECPATHopp'],
+    ['Стипендии и выплаты', 'калькулятор', 'service/index.html?s=money'],
+    ['Аренда без депозита', 'гайд', 'service/index.html?s=home'],
+    ['Куда сходить бесплатно', '11 мест', 'afisha/index.html'],
+    ['Работа с гибким графиком', '128 вакансий', 'service/index.html?s=job'],
+    ['Психолог бесплатно', 'анонимно', 'service/index.html?s=psy']
   ];
   const ov = document.createElement('div');
   ov.className = 'search-ov';
@@ -363,3 +363,10 @@
   window.addEventListener('resize', () => { onProgress(); onParallax(); });
   onParallax();
 })();
+
+/* страховка для скриншотов и старых браузеров */
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.is-in)').forEach(function (el) { el.classList.add('is-in'); });
+  }, 1500);
+});

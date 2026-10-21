@@ -7,13 +7,14 @@
   const { sections, articles } = window.MP;
 
   const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const byId = id => articles.find(a => a.id === id);
   const bySlug = slug => sections.find(s => s.slug === slug);
   const qs = name => new URLSearchParams(location.search).get(name);
 
   const ESC = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const artHref = id => 'article.html?id=' + id;
-  const secHref = slug => 'razdel.html?r=' + slug;
+  const artHref = id => 'article/index.html?id=' + id;
+  const secHref = slug => slug + '/index.html';
 
   const ICON = `<svg aria-hidden="true"><use href="#i-arrow"/></svg>`;
 
@@ -44,13 +45,113 @@
       </a>`;
   }
 
+
+  /* ---------------------------------------------------------- ПОДРАЗДЕЛ -- */
+  function renderBlockPage(sec, b) {
+    document.body.dataset.accent = sec.slug;
+    document.title = b.title + ' — ' + sec.title + ' | Мой-портал.ру';
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', b.lead);
+
+    const bodyHTML = (b.body || []).map(([t, v]) => {
+      if (t === 'h') return '<h2>' + ESC(v) + '</h2>';
+      if (t === 'p') return '<p>' + ESC(v) + '</p>';
+      if (t === 'ul') return '<ul>' + v.map(x => '<li>' + ESC(x) + '</li>').join('') + '</ul>';
+      return '';
+    }).join('');
+
+    const linksHTML = (b.links || []).map(l => {
+      const ext = /^http/.test(l.u);
+      return '<a href="' + l.u + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + ESC(l.t) + '<svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>';
+    }).join('');
+
+    const rel = (b.articles || []).map(id => articles.find(a => a.id === id)).filter(Boolean);
+    const others = (sec.blocks || []).filter(x => x.t !== b.title);
+    const otherHTML = others.map(x => {
+      return '<a class="chip" href="' + (x.slug ? sec.slug + '/' + x.slug + '/index.html' : sec.slug + '/index.html') + '">' + ESC(x.t) + '</a>';
+    }).join('');
+
+    $('#app').innerHTML = `
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><span>/</span>
+          <a href="${sec.slug}/index.html">${ESC(sec.title)}</a><span>/</span>
+          <span style="opacity:1;color:var(--muted)">${ESC(b.title)}</span>
+        </nav>
+
+        <header class="page-head" style="padding-top:20px;padding-bottom:10px">
+          <p class="eyebrow">${ESC(sec.title)} · подраздел</p>
+          <h1>${ESC(b.title)}</h1>
+          <p class="page-head__sub">${ESC(b.lead)}</p>
+        </header>
+
+        <div class="art-body" style="padding-bottom:clamp(24px,4vw,56px)">
+          <article class="prose">${bodyHTML}</article>
+          <aside class="aside-box">
+            ${linksHTML ? `<div class="aside-card">
+              <h4>Дальше</h4>
+              <div class="univ-list" style="flex-direction:column;align-items:stretch">${linksHTML}</div>
+            </div>` : ''}
+            <div class="aside-card aside-card--dark">
+              <h4>Одно письмо по средам</h4>
+              <p style="font-size:13px;color:var(--inv-muted);margin-bottom:16px">Пять вещей на неделю: выплаты, дедлайны, события.</p>
+              <a class="btn btn--sm" href="index.html#podpiska" style="width:100%">Подписаться</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      ${rel.length ? `<section class="section" style="padding-top:0">
+        <div class="wrap">
+          <div class="section-head-inline">
+            <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Материалы по теме</h2>
+            <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
+          </div>
+          <div class="grid g3" data-stagger>${rel.map(a => cardHTML(a, { reveal: true })).join('')}</div>
+        </div>
+      </section>` : ''}
+
+      <section class="section" style="padding-top:0">
+        <div class="wrap">
+          <div class="section-head-inline">
+            <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Ещё в разделе «${ESC(sec.title)}»</h2>
+          </div>
+          <div class="subsection-nav">${otherHTML}</div>
+        </div>
+      </section>`;
+  }
+
   /* ------------------------------------------------------------- РАЗДЕЛ -- */
   function renderSection() {
-    const slug = qs('r') || 'money';
+    const slug = document.body.dataset.r || qs('r') || 'work';
     const s = bySlug(slug) || sections[0];
+    const blockSlug = document.body.dataset.block || '';
+
+    if (blockSlug) {
+      const blk = (window.MP.blocks || {})[s.slug + '-' + blockSlug];
+      if (blk) { renderBlockPage(s, blk); return; }
+    }
     const items = s.cards.map(byId).filter(Boolean);
 
-    document.title = s.title + ' — ' + s.lead.slice(0, 60) + ' | Мой-портал.ру';
+    document.body.dataset.accent = s.slug;
+
+    const linksHTML = (s.links || []).length ? `
+      <div class="section-head-inline" style="margin-top:8px">
+        <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Вузы и колледжи</h2>
+      </div>
+      <div class="univ-list">
+        ${(s.links || []).map(l => `<a href="${l.u}" target="_blank" rel="noopener">${ESC(l.t)}<svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>`).join('')}
+      </div>` : '';
+
+    const testsHTML = (s.tests || []).length ? `
+      <div class="section-head-inline" style="margin-top:28px">
+        <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Профориентация</h2>
+        <a class="link-more" href="study/tests/index.html">Все тесты ${ICON}</a>
+      </div>
+      <div class="grid g3" style="margin-bottom:clamp(24px,3vw,44px)">
+        ${(s.tests || []).map(t => `<a class="test" href="study/tests/index.html"><span class="test__k">${ESC(t.d)}</span><span class="test__t">${ESC(t.t)}</span></a>`).join('')}
+      </div>` : '';
+    document.title = s.title + ' — Мой-портал.ру';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', s.lead);
 
@@ -59,15 +160,25 @@
 
     const cards = items.map(a => cardHTML(a, { reveal: true })).join('');
 
+    const blocksHTML = (s.blocks || []).map((b, i) => `
+      <a class="block reveal" href="${s.slug}/${b.slug}/index.html">
+        <span class="block__n">${String(i + 1).padStart(2, '0')}</span>
+        <span class="block__t">${ESC(b.t)}</span>
+        ${b.d ? `<span class="block__d">${ESC(b.d)}</span>` : ''}
+        <ul class="block__list">${(b.items || []).map(x => `<li>${ESC(x)}</li>`).join('')}</ul>
+        <span class="block__go">Материалы по теме ${ICON}</span>
+      </a>`).join('');
+
     const faq = s.faq.map(([q, a], i) => `
       <details${i === 0 ? ' open' : ''}>
         <summary>${ESC(q)}</summary>
         <p>${ESC(a)}</p>
       </details>`).join('');
 
+    const here = location.pathname.replace(/index\.html$/, '');
     document.querySelectorAll('.nav a').forEach(a => {
-      const u = new URL(a.href, location.href);
-      a.classList.toggle('is-active', u.searchParams.get('r') === s.slug);
+      const p2 = new URL(a.href, document.baseURI).pathname.replace(/index\.html$/, '');
+      a.classList.toggle('is-active', p2 === here);
     });
 
     const navList = sections.map(x =>
@@ -101,17 +212,24 @@
           <a class="btn" href="${s.service.href}">${ESC(s.service.cta)}</a>
         </div>
 
-        <p class="meta" style="margin-bottom:22px">Темы раздела: ${s.subtopics.join(' · ')}</p>
+        ${blocksHTML ? `<div class="section-head-inline">
+          <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Что внутри</h2>
+          <span class="meta">${(s.blocks || []).length} направлений</span>
+        </div>
+        <div class="blocks" data-stagger>${blocksHTML}</div>` : ''}
+
+        ${linksHTML}
+        ${testsHTML}
 
         <div class="section-head-inline">
           <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Материалы раздела</h2>
-          <a class="link-more" href="lenta.html">Вся лента ${ICON}</a>
+          <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
         </div>
 
         <div class="grid g3" data-stagger>${cards}</div>
 
         <div class="load-more">
-          <a class="btn btn--ghost magnet" href="lenta.html">Смотреть все материалы</a>
+          <a class="btn btn--ghost magnet" href="lenta/index.html">Смотреть все материалы</a>
         </div>
       </div>
 
@@ -141,6 +259,7 @@
     const id = qs('id') || articles[0].id;
     const a = byId(id) || articles[0];
     const s = bySlug(a.section);
+    document.body.dataset.accent = a.section || 'work';
 
     document.title = a.title + ' — Мой-портал.ру';
     const meta = document.querySelector('meta[name="description"]');
@@ -259,7 +378,7 @@
               <span class="section__num">Дальше</span>
               <div><h2 class="section__title">Читайте также</h2></div>
             </div>
-            <a class="link-more" href="lenta.html">Вся лента ${ICON}</a>
+            <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
           </div>
           <div class="grid g3" data-stagger>
             ${articles.filter(x => x.id !== a.id).slice(3, 6).map(x => cardHTML(x, { reveal: true })).join('')}

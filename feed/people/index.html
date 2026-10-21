@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="">
+<head>
+<meta charset="utf-8">
+<base href="../../">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Раздел — Мой-портал.ру</title>
+<meta name="description" content="Раздел портала">
+<link rel="preload" href="assets/fonts/Unbounded-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Onest-var-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('mp:theme');
+        var dark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) r.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0B0C'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF4416'/%3E%3C/svg%3E"><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/>
+</head>
+<body data-page="section" data-r="feed" data-block="people">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20.2 20.2 16 16"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-loc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></symbol>
+  <symbol id="i-rub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v16M9 4h4.6a4 4 0 0 1 0 8H9M6 15.5h9"/></symbol>
+  <symbol id="i-work" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9.5 21v-6h5v6"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5 12 4l10 4.5-10 4.5z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.5 9.6l5.9-.8z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M2 6h20v4H2zM12 6v15"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-pod" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3"/></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <div class="topbar__left">
+      <span class="topbar__dot"></span>
+      <span data-clock-date>Тюмень · пятница, 16 октября</span>
+      <span class="topbar__sep">·</span>
+      <span data-clock-time>12:00</span>
+      <span class="topbar__sep">·</span>
+      <span class="topbar__smi">Официальное СМИ Тюменской области</span>
+    </div>
+    <div class="topbar__right">
+      <a href="page/index.html?p=about">О портале</a>
+    </div>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Мой-портал.ру — на главную">
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--dark" src="assets/brand/logo-2.png" alt="Мой портал">
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--light" src="assets/brand/logo-1.png" alt="Мой портал">
+    </a>
+    <nav class="nav" aria-label="Разделы портала">
+      <a href="index.html">Главное</a>
+      <a href="work/index.html">Работа</a>
+      <a href="study/index.html">Учёба</a>
+      <a href="afisha/index.html">Афиша</a>
+      <a href="psy/index.html">Психология</a>
+      <a href="opp/index.html">Возможности</a>
+      <a href="feed/index.html">Лента</a>
+    </nav>
+    <div class="hdr__actions">
+      <a class="pod-btn" href="podcasts/index.html" data-podcasts aria-label="Подкасты портала" title="Подкасты">
+        <svg aria-hidden="true"><use href="#i-pod"/></svg>
+      </a>
+      <button class="icon-btn" data-search-open type="button" aria-label="Поиск по порталу (клавиша /)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg>
+      </button>
+      <button class="icon-btn" data-theme-toggle type="button">
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <div class="sub-wrap">
+        <button class="btn btn--ghost btn--sm" type="button" data-sub-toggle aria-expanded="false" aria-haspopup="true">Подписаться</button>
+        <div class="sub-menu" id="subMenu">
+          <a href="https://t.me/moi_portal" target="_blank" rel="noopener">Telegram <span>канал</span></a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener">ВКонтакте <span>паблик</span></a>
+          <a href="https://max.ru" target="_blank" rel="noopener">MAX <span>мессенджер</span></a>
+          <a href="https://www.youtube.com/@moi_portal" target="_blank" rel="noopener">YouTube <span>видео</span></a>
+          <span class="sub-menu__sep"></span>
+          <a href="index.html#podpiska">Письмо по средам <span>e-mail</span></a>
+        </div>
+      </div>
+      <button class="icon-btn burger" data-menu-open type="button" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="mmenu__top">
+    <a class="brand" href="index.html"><span class="brand__word">Мой&nbsp;портал</span><span class="brand__dot"></span></a>
+    <button class="icon-btn" data-menu-close type="button" aria-label="Закрыть меню"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <nav aria-label="Мобильная навигация">
+    <a href="index.html">Главное <span>01</span></a>
+    <a href="work/index.html">Работа <span>02</span></a>
+    <a href="study/index.html">Учёба <span>03</span></a>
+    <a href="afisha/index.html">Афиша <span>04</span></a>
+    <a href="psy/index.html">Психология <span>05</span></a>
+    <a href="opp/index.html">Возможности <span>06</span></a>
+    <a href="feed/index.html">Лента <span>07</span></a>
+    <a href="podcasts/index.html">Подкасты <span>08</span></a>
+    <a href="services/index.html">Сервисы <span>09</span></a>
+    <a href="lenta/index.html">Все материалы <span>10</span></a>
+  </nav>
+  <div class="mmenu__foot">
+    <a class="btn btn--sm" href="index.html#podpiska">Подписаться</a>
+    <button class="btn btn--ghost btn--sm" data-theme-toggle type="button">Сменить тему</button>
+  </div>
+</div>
+
+<main id="app"></main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <img class="footer__logo footer__logo--white" src="assets/brand/logo-1.png" alt="Мой портал">
+        <img class="footer__logo footer__logo--black" src="assets/brand/logo-2.png" alt="Мой портал">
+        <p class="footer__tag">Молодёжный информационный портал Тюмени и Тюменской области. Учредитель — ГАУ ДО ТО «Дворец творчества и спорта „Пионер“».</p>
+        <div class="footer__socials" style="margin-top:24px">
+          <a href="https://t.me/moi_portal" target="_blank" rel="noopener" aria-label="Telegram">ТГ</a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener" aria-label="ВКонтакте">ВК</a>
+          <a href="https://www.tiktok.com/@moiportal72" target="_blank" rel="noopener" aria-label="ТикТок">ТТ</a>
+          <a href="https://max.ru" target="_blank" rel="noopener" aria-label="MAX">МАКС</a>
+          <a href="mailto:moiporta.l@ya.ru" aria-label="Почта"><svg style="width:15px;height:15px" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h4>Разделы</h4>
+          <a href="index.html">Главное</a>
+          <a href="lenta/index.html">Лента</a>
+          <a href="index.html#razdely">Все разделы</a>
+          <a href="afisha/index.html">Афиша</a>
+          <a href="services/index.html">Сервисы</a>
+          <a href="index.html#podpiska">Подписка</a>
+        </div>
+        <div>
+          <h4>Редакция</h4>
+          <a href="page/index.html?p=about">О портале</a>
+          <a href="page/index.html?p=rules">Правила и политика</a>
+          <a href="page/index.html?p=authors">Стать автором</a>
+          <a href="page/index.html?p=partners">Релизы</a>
+          <a href="page/index.html?p=partners">Сотрудничество</a>
+        </div>
+        <div>
+          <h4>Документы</h4>
+          <a href="page/index.html?p=privacy">Политика конфиденциальности</a>
+          <a href="page/index.html?p=privacy">Пользовательское соглашение</a>
+          <a href="page/index.html?p=license">Свидетельство СМИ</a>
+          <a href="ui-kit/index.html">Дизайн-система</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__legal">Свидетельство о регистрации СМИ «Молодёжный информационный портал Тюмени и Тюменской области Moi-portal.ru» Эл № ФС77-91432 от 28.04.2026, выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор). Учредитель: Государственное автономное учреждение дополнительного образования Тюменской области «Дворец творчества и спорта «Пионер». Адрес редакции: 625000, Тюменская обл., г. Тюмень, ул. Хохрякова, 47.</p>
+      <div class="footer__meta">
+        <span>© <span data-year>2026</span> Мой-портал.ру · 12+</span>
+        <span>Прототип редизайна · демонстрационные данные</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/data2.js"></script>
+<script src="assets/js/blocks.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/render2.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/motion.js"></script>
+</body>
+</html>

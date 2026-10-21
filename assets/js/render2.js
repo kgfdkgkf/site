@@ -12,7 +12,7 @@
   const ESC = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   const CAT = { music: 'Музыка', lecture: 'Лекция', kino: 'Кино', master: 'Мастер-класс', meeting: 'Встреча', sport: 'Спорт', party: 'Вечеринка' };
-  const artHref = id => 'article.html?id=' + id;
+  const artHref = id => 'article/index.html?id=' + id;
   const FRAME = '<svg aria-hidden="true"><use href="#i-arrow"/></svg>';
 
   /* ------------------------------------------------------------ утилиты -- */
@@ -41,7 +41,7 @@
   }
 
   function eventCard(e) {
-    return `<a class="ev" href="event.html?id=${e.id}">
+    return `<a class="ev" href="event/index.html?id=${e.id}">
       <div class="ev__media">
         <div class="ev__date"><b>${e.dayNum}</b><span>${e.mon}</span></div>
         ${e.price === 'free' ? '<span class="sticker sticker-abs sticker-abs--br">Бесплатно</span>' : ''}
@@ -61,13 +61,14 @@
     const id = qs('id') || (events[0] && events[0].id);
     const e = events.find(x => x.id === id) || events[0];
     if (!e) return;
+    document.body.dataset.accent = 'afisha';
     document.title = e.title + ' — Мой-портал.ру';
     const rel = events.filter(x => x.id !== e.id).slice(0, 3);
 
     $('#app').innerHTML = `
       <div class="wrap">
         <nav class="crumbs"><a href="index.html">Главная</a><span>/</span>
-          <a href="afisha.html">Афиша</a><span>/</span>
+          <a href="afisha/index.html">Афиша</a><span>/</span>
           <span style="opacity:1;color:var(--muted)">${ESC(CAT[e.cat] || 'Событие')}</span></nav>
 
         <header class="art-head">
@@ -126,7 +127,7 @@
           <div class="section__head">
             <div class="section__head-left"><span class="section__num">Ещё</span>
               <div><h2 class="section__title">Другие события</h2></div></div>
-            <a class="link-more" href="afisha.html">Вся афиша ${FRAME}</a>
+            <a class="link-more" href="afisha/index.html">Вся афиша ${FRAME}</a>
           </div>
           <div class="events" style="padding-top:0">${rel.map(eventCard).join('')}</div>
         </div>
@@ -137,13 +138,15 @@
   function renderService() {
     const slug = qs('s') || 'grant';
     const s = services.find(x => x.slug === slug) || services[0];
+    const ACC = { job: 'work', money: 'study', edu: 'study', grants: 'opp', forums: 'opp', home: 'work', psy: 'psy', bonus: 'opp' };
+    document.body.dataset.accent = ACC[s.slug] || 'work';
     document.title = s.title + ' — сервис Мой-портал.ру';
     const rel = (s.articles || []).map(id => articles.find(a => a.id === id)).filter(Boolean);
 
     $('#app').innerHTML = `
       <div class="wrap">
         <nav class="crumbs"><a href="index.html">Главная</a><span>/</span>
-          <a href="services.html">Сервисы</a><span>/</span>
+          <a href="services/index.html">Сервисы</a><span>/</span>
           <span style="opacity:1;color:var(--muted)">${ESC(s.title)}</span></nav>
 
         <header class="page-head" style="padding-bottom:20px">
@@ -188,7 +191,7 @@
             </div>
             <div class="aside-card">
               <h4>Другие сервисы</h4>
-              ${services.filter(x => x.slug !== s.slug).slice(0, 4).map(x => `<a href="service.html?s=${x.slug}" style="display:block;font-size:13.5px;padding:7px 0;color:var(--fg-2)">${ESC(x.title)}</a>`).join('')}
+              ${services.filter(x => x.slug !== s.slug).slice(0, 4).map(x => `<a href="service/index.html?s=${x.slug}" style="display:block;font-size:13.5px;padding:7px 0;color:var(--fg-2)">${ESC(x.title)}</a>`).join('')}
             </div>
           </aside>
         </div>
@@ -220,6 +223,18 @@
       return '';
     }).join('');
 
+    const teamHTML = (p.team || []).length ? `
+      <div class="section-head-inline" style="margin-top:38px">
+        <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Команда портала</h2>
+        <span class="meta">${p.team.length} человек</span>
+      </div>
+      <div class="team">
+        ${p.team.map(t => `<figure class="team__item">
+          <div class="team__photo"><img src="assets/img/${t.img}" alt="${ESC(t.n)}" loading="lazy"></div>
+          <figcaption><b>${ESC(t.n)}</b><span>${ESC(t.r)}</span></figcaption>
+        </figure>`).join('')}
+      </div>` : '';
+
     $('#app').innerHTML = `
       <div class="wrap">
         <nav class="crumbs"><a href="index.html">Главная</a><span>/</span>
@@ -228,7 +243,9 @@
           <h1>${ESC(p.title)}</h1>
           <p class="page-head__sub">${ESC(p.lead)}</p>
         </header>
-        <article class="prose" style="max-width:72ch;padding-bottom:60px">${html}</article>
+        ${teamHTML}
+        <article class="prose" style="max-width:72ch;margin-top:8px">${html}</article>
+        <div style="padding-bottom:60px"></div>
       </div>`;
   }
 
@@ -243,15 +260,15 @@
     });
     sections.forEach(x => {
       if ((x.title + ' ' + x.lead).toLowerCase().indexOf(s) > -1)
-        out.push({ title: 'Раздел «' + x.title + '»', kind: 'Раздел', href: 'razdel.html?r=' + x.slug });
+        out.push({ title: 'Раздел «' + x.title + '»', kind: 'Раздел', href: x.slug + '/index.html' });
     });
     events.forEach(e => {
       if ((e.title + ' ' + e.lead + ' ' + e.place).toLowerCase().indexOf(s) > -1)
-        out.push({ title: e.title, kind: 'Событие', href: 'event.html?id=' + e.id });
+        out.push({ title: e.title, kind: 'Событие', href: 'event/index.html?id=' + e.id });
     });
     services.forEach(x => {
       if ((x.title + ' ' + x.lead).toLowerCase().indexOf(s) > -1)
-        out.push({ title: 'Сервис «' + x.title + '»', kind: 'Сервис', href: 'service.html?s=' + x.slug });
+        out.push({ title: 'Сервис «' + x.title + '»', kind: 'Сервис', href: 'service/index.html?s=' + x.slug });
     });
     return out.slice(0, 8);
   };

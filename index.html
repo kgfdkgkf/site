@@ -20,7 +20,8 @@
   </script>
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/motion.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/></svg>">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0B0C'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF4416'/%3E%3C/svg%3E"><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/>
 </head>
 <body>
 
@@ -48,6 +49,7 @@
   <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
   <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 8.5a5 5 0 0 1-10 0C7 9 9 7 9 7s.4 2.2 1.6 3C11.4 8.4 12 5.5 12 3z"/></symbol>
+  <symbol id="i-pod" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3"/></symbol>
 </svg>
 
 <!-- ===================== ТОПБАР ===================== -->
@@ -55,15 +57,14 @@
   <div class="wrap topbar__in">
     <div class="topbar__left">
       <span class="topbar__dot"></span>
-      <span>Тюмень · четверг, 15 октября</span>
-      <span>·</span>
-      <span>Официальное СМИ Тюменской области</span>
+      <span data-clock-date>Тюмень · пятница, 16 октября</span>
+      <span class="topbar__sep">·</span>
+      <span data-clock-time>12:00</span>
+      <span class="topbar__sep">·</span>
+      <span class="topbar__smi">Официальное СМИ Тюменской области</span>
     </div>
     <div class="topbar__right">
-      <a href="page.html?p=about">О портале</a>
-      <a href="https://t.me/moi_portal" target="_blank" rel="noopener">Телеграм</a>
-      <a href="https://vk.com/moiportal" target="_blank" rel="noopener">ВК</a>
-      <span class="topbar__age">12+</span>
+      <a href="page/index.html?p=about">О портале</a>
     </div>
   </div>
 </div>
@@ -72,20 +73,24 @@
 <header class="hdr">
   <div class="wrap hdr__in">
     <a class="brand" href="index.html" aria-label="Мой-портал.ру — на главную">
-      <span class="brand__word">Мой&nbsp;портал</span><span class="brand__dot" aria-hidden="true"></span>
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--dark" src="assets/brand/logo-2.png" alt="Мой портал">
+      <img style="height:44px;width:auto" class="brand__logo brand__logo--light" src="assets/brand/logo-1.png" alt="Мой портал">
     </a>
 
     <nav class="nav" aria-label="Разделы портала">
       <a href="index.html" class="is-active">Главное</a>
-      <a href="razdel.html?r=work">Работа</a>
-      <a href="razdel.html?r=study">Учёба</a>
-      <a href="afisha.html">Афиша</a>
-      <a href="razdel.html?r=psy">Психология</a>
-      <a href="razdel.html?r=opp">Возможности</a>
-      <a href="razdel.html?r=city">Люди</a>
+      <a href="work/index.html">Работа</a>
+      <a href="study/index.html">Учёба</a>
+      <a href="afisha/index.html">Афиша</a>
+      <a href="psy/index.html">Психология</a>
+      <a href="opp/index.html">Возможности</a>
+      <a href="feed/index.html">Лента</a>
     </nav>
 
     <div class="hdr__actions">
+      <a class="pod-btn" href="podcasts/index.html" data-podcasts aria-label="Подкасты портала" title="Подкасты">
+        <svg aria-hidden="true"><use href="#i-pod"/></svg>
+      </a>
       <button class="icon-btn" data-search-open type="button" aria-label="Поиск по порталу (клавиша /)">
         <svg aria-hidden="true"><use href="#i-search"/></svg>
       </button>
@@ -93,7 +98,17 @@
         <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
         <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
       </button>
-      <a class="btn btn--ghost btn--sm" href="index.html#podpiska">Подписаться</a>
+      <div class="sub-wrap">
+        <button class="btn btn--ghost btn--sm" type="button" data-sub-toggle aria-expanded="false" aria-haspopup="true">Подписаться</button>
+        <div class="sub-menu" id="subMenu">
+          <a href="https://t.me/moi_portal" target="_blank" rel="noopener">Telegram <span>канал</span></a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener">ВКонтакте <span>паблик</span></a>
+          <a href="https://max.ru" target="_blank" rel="noopener">MAX <span>мессенджер</span></a>
+          <a href="https://www.youtube.com/@moi_portal" target="_blank" rel="noopener">YouTube <span>видео</span></a>
+          <span class="sub-menu__sep"></span>
+          <a href="index.html#podpiska">Письмо по средам <span>e-mail</span></a>
+        </div>
+      </div>
       <button class="icon-btn burger" data-menu-open type="button" aria-label="Открыть меню">
         <span></span><span></span><span></span>
       </button>
@@ -111,14 +126,15 @@
   </div>
   <nav aria-label="Мобильная навигация">
     <a href="index.html">Главное <span>01</span></a>
-    <a href="razdel.html?r=work">Работа <span>02</span></a>
-    <a href="razdel.html?r=study">Учёба <span>03</span></a>
-    <a href="afisha.html">Афиша <span>04</span></a>
-    <a href="razdel.html?r=psy">Психология <span>05</span></a>
-    <a href="razdel.html?r=opp">Возможности <span>06</span></a>
-    <a href="razdel.html?r=city">Люди <span>07</span></a>
-    <a href="lenta.html">Лента <span>08</span></a>
-    <a href="services.html">Сервисы <span>09</span></a>
+    <a href="work/index.html">Работа <span>02</span></a>
+    <a href="study/index.html">Учёба <span>03</span></a>
+    <a href="afisha/index.html">Афиша <span>04</span></a>
+    <a href="psy/index.html">Психология <span>05</span></a>
+    <a href="opp/index.html">Возможности <span>06</span></a>
+    <a href="feed/index.html">Лента <span>07</span></a>
+    <a href="podcasts/index.html">Подкасты <span>08</span></a>
+    <a href="services/index.html">Сервисы <span>09</span></a>
+    <a href="lenta/index.html">Все материалы <span>10</span></a>
   </nav>
   <div class="mmenu__foot">
     <a class="btn btn--sm" href="index.html#podpiska">Подписаться</a>
@@ -139,11 +155,11 @@
       </h1>
       <p class="lead">Пишем о том, что реально влияет на твою жизнь: учёба, деньги, работа, жильё, люди и выходные. Без пресс-релизов и «важных встреч».</p>
       <div class="hero__cta">
-        <a class="btn btn--lg magnet" href="lenta.html">
+        <a class="btn btn--lg magnet" href="lenta/index.html">
           Смотреть ленту
           <svg aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
-        <a class="btn btn--ghost btn--lg" href="afisha.html">Афиша выходных</a>
+        <a class="btn btn--ghost btn--lg" href="afisha/index.html">Афиша выходных</a>
       </div>
       <div class="stats">
         <div class="stat">
@@ -161,10 +177,10 @@
       </div>
     </div>
 
-    <a class="hero-card tilt" href="article.html?id=work-1">
+    <a class="hero-card" href="article/index.html?id=work-1">
       <div class="hero-card__media">
         <span class="sticker sticker--rot sticker-abs">Главное сегодня</span>
-        <img data-parallax="0.05" src="assets/img/career.jpg" width="1273" height="476" alt="Студентка на рабочем месте в Тюмени">
+        <img src="assets/img/career.jpg" width="1273" height="476" alt="Студентка на рабочем месте в Тюмени">
       </div>
       <div class="hero-card__body">
         <span class="rubric">Как жить</span>
@@ -210,11 +226,11 @@
           <p class="section__sub">Что читают и обсуждают прямо сейчас — обновляется каждые 15 минут</p>
         </div>
       </div>
-      <a class="link-more" href="lenta.html">Вся лента <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="link-more" href="lenta/index.html">Вся лента <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
 
     <div class="grid g-main">
-      <a class="card card--big reveal" href="article.html?id=afisha-1">
+      <a class="card card--big reveal" href="article/index.html?id=afisha-1">
         <div class="card__media">
           <span class="sticker sticker-abs">18 событий</span>
           <img src="assets/img/tyumen-barbie.jpg" width="1600" height="900" alt="Улица Тюмени в выходной">
@@ -233,28 +249,28 @@
           <span style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">Сейчас читают</span>
         </div>
         <div class="stack">
-          <a class="stack__item" href="article.html?id=money-1">
+          <a class="stack__item" href="article/index.html?id=money-1">
             <span class="stack__num">01</span>
             <div>
               <h3 class="stack__title">Налоговый вычет за спорт: как вернуть до 19 500 ₽</h3>
               <p class="meta" style="margin-top:6px"><span>Работа</span><span class="dot"></span><span>5 минут</span></p>
             </div>
           </a>
-          <a class="stack__item" href="article.html?id=money-3">
+          <a class="stack__item" href="article/index.html?id=money-3">
             <span class="stack__num">02</span>
             <div>
               <h3 class="stack__title">Стипендия в этом семестре: кому, сколько и когда придёт</h3>
               <p class="meta" style="margin-top:6px"><span>Учёба</span><span class="dot"></span><span>6 минут</span></p>
             </div>
           </a>
-          <a class="stack__item" href="article.html?id=psy-1">
+          <a class="stack__item" href="article/index.html?id=psy-1">
             <span class="stack__num">03</span>
             <div>
               <h3 class="stack__title">Выгорание: семь признаков и что делать в первые две недели</h3>
               <p class="meta" style="margin-top:6px"><span>Психология</span><span class="dot"></span><span>8 минут</span></p>
             </div>
           </a>
-          <a class="stack__item" href="article.html?id=work-1">
+          <a class="stack__item" href="article/index.html?id=work-1">
             <span class="stack__num">04</span>
             <div>
               <h3 class="stack__title">«Я чувствую, что я на своём месте»: карьера без диплома</h3>
@@ -262,8 +278,27 @@
             </div>
           </a>
         </div>
-        <a class="btn btn--ghost btn--sm" href="lenta.html" style="margin-top:18px">Смотреть ленту</a>
+        <a class="btn btn--ghost btn--sm" href="lenta/index.html" style="margin-top:18px">Смотреть ленту</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 01b. СВЕЖЕЕ ===================== -->
+<section class="section section--tight" id="svezhie">
+  <div class="wrap">
+    <div class="carousel" id="newsCarousel">
+      <div class="carousel__nav">
+        <div>
+          <h2 class="section__title" style="font-size:clamp(22px,2.4vw,32px)">Свежее за неделю</h2>
+          <p class="section__sub" style="margin-top:6px">Листай в сторону — или стрелками</p>
+        </div>
+        <div class="carousel__btns">
+          <button type="button" data-car="-1" aria-label="Назад"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button type="button" data-car="1" aria-label="Вперёд"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="carousel__track" id="carTrack"></div>
     </div>
   </div>
 </section>
@@ -279,55 +314,55 @@
           <p class="section__sub">Шесть задач, с которыми приходят. В каждом разделе — материалы и свой инструмент</p>
         </div>
       </div>
-      <a class="link-more" href="services.html">Все сервисы <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="link-more" href="services/index.html">Все сервисы <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
 
     <div class="ru" data-stagger>
-      <a class="rub-tile reveal" href="razdel.html?r=work">
+      <a class="rub-tile reveal" href="work/index.html">
         <span class="rub-tile__n">01</span>
         <span class="rub-tile__t">Работа</span>
         <span class="rub-tile__d">Вакансии с гибким графиком, стажировки, подработка, вычеты и аренда</span>
         <span class="rub-tile__srv">128 вакансий</span>
         <span class="rub-tile__c">96 материалов <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
-      <a class="rub-tile reveal" href="razdel.html?r=study">
+      <a class="rub-tile reveal" href="study/index.html">
         <span class="rub-tile__n">02</span>
         <span class="rub-tile__t">Учёба</span>
         <span class="rub-tile__d">ЕГЭ и ОГЭ, поступление, олимпиады, колледжи и стипендии</span>
         <span class="rub-tile__srv">Калькулятор выплат</span>
         <span class="rub-tile__c">51 материал <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
-      <a class="rub-tile reveal" href="afisha.html">
+      <a class="rub-tile reveal" href="afisha/index.html">
         <span class="rub-tile__n">03</span>
         <span class="rub-tile__t">Афиша</span>
         <span class="rub-tile__d">Что делать в выходные: бесплатно, до 500 ₽ и с друзьями</span>
         <span class="rub-tile__srv">Фильтры по цене</span>
         <span class="rub-tile__c">18 событий <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
-      <a class="rub-tile reveal" href="razdel.html?r=psy">
+      <a class="rub-tile reveal" href="psy/index.html">
         <span class="rub-tile__n">04</span>
         <span class="rub-tile__t">Психология</span>
         <span class="rub-tile__d">Поговорить, выгорание, отношения — бесплатно и анонимно</span>
         <span class="rub-tile__srv">Чат с психологом</span>
         <span class="rub-tile__c">31 материал <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
-      <a class="rub-tile reveal" href="razdel.html?r=opp">
+      <a class="rub-tile reveal" href="opp/index.html">
         <span class="rub-tile__n">05</span>
         <span class="rub-tile__t">Возможности</span>
         <span class="rub-tile__d">Гранты, форумы, смены, конкурсы и волонтёрство — успей подать</span>
         <span class="rub-tile__srv">Календарь заявок</span>
         <span class="rub-tile__c">33 материала <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
-      <a class="rub-tile reveal" href="razdel.html?r=city">
+      <a class="rub-tile reveal" href="feed/index.html">
         <span class="rub-tile__n">06</span>
-        <span class="rub-tile__t">Люди</span>
-        <span class="rub-tile__d">Герои, места, маршруты, районы и аренда — город изнутри</span>
-        <span class="rub-tile__srv">Городская карта</span>
-        <span class="rub-tile__c">58 материалов <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+        <span class="rub-tile__t">Лента</span>
+        <span class="rub-tile__d">Истории пользователей, обсуждения и поиск единомышленников</span>
+        <span class="rub-tile__srv">Сообщество</span>
+        <span class="rub-tile__c">220 записей <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
       </a>
     </div>
 
-    <a class="serv-bar" href="services.html">
+    <a class="serv-bar" href="services/index.html">
       <div>
         <div class="serv-bar__t">8 инструментов в одном кабинете</div>
         <div class="serv-bar__d">Гранты, выплаты, работа, жильё, поступление, психолог, форумы и бонусы — без десяти вкладок и очередей</div>
@@ -348,11 +383,11 @@
           <p class="section__sub">16–18 октября · 18 событий, из них 11 — бесплатно</p>
         </div>
       </div>
-      <a class="link-more" href="afisha.html">Вся афиша <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="link-more" href="afisha/index.html">Вся афиша <svg style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
 
     <div class="events" style="padding-top:0">
-      <a class="ev reveal" href="afisha.html">
+      <a class="ev reveal" href="afisha/index.html">
         <div class="ev__media">
           <div class="ev__date"><b>17</b><span>ОКТ</span></div>
           <img src="assets/img/afisha-tehno.jpg" width="1273" height="476" alt="Мастер-класс по электронике">
@@ -364,7 +399,7 @@
           <div class="ev__foot"><span class="price price--free">Бесплатно</span><span class="meta">18:30</span></div>
         </div>
       </a>
-      <a class="ev reveal" href="afisha.html">
+      <a class="ev reveal" href="afisha/index.html">
         <div class="ev__media">
           <div class="ev__date"><b>18</b><span>ОКТ</span></div>
           <img src="assets/img/afisha-craft.jpg" width="1273" height="476" alt="Встреча книжного клуба">
@@ -376,7 +411,7 @@
           <div class="ev__foot"><span class="price price--free">Бесплатно</span><span class="meta">15:00</span></div>
         </div>
       </a>
-      <a class="ev reveal" href="afisha.html">
+      <a class="ev reveal" href="afisha/index.html">
         <div class="ev__media">
           <div class="ev__date"><b>16</b><span>ОКТ</span></div>
           <img src="assets/img/kino.jpg" width="1080" height="1080" alt="Показ фильма">
@@ -406,9 +441,17 @@
           <input id="email" type="email" placeholder="твой e-mail" required>
           <button class="btn" type="submit">Подписаться</button>
         </div>
+        <div class="sub-topics" data-topics aria-label="Что присылать">
+          <button type="button" class="is-on" data-topic="work">Работа</button>
+          <button type="button" class="is-on" data-topic="study">Учёба</button>
+          <button type="button" class="is-on" data-topic="afisha">Афиша</button>
+          <button type="button" data-topic="psy">Психология</button>
+          <button type="button" data-topic="opp">Возможности</button>
+          <button type="button" data-topic="feed">Лента</button>
+        </div>
         <label class="check">
           <input type="checkbox" required>
-          <span>Согласен с <a href="page.html?p=terms" style="text-decoration:underline">правилами сайта</a> и обработкой персональных данных</span>
+          <span>Согласен с <a href="page/index.html?p=terms" style="text-decoration:underline">правилами сайта</a> и обработкой персональных данных</span>
         </label>
       </form>
     </div>
@@ -422,13 +465,14 @@
   <div class="wrap">
     <div class="footer__top">
       <div>
-        <span class="footer__plate"><span>Мой</span><span>портал</span></span>
+        <img class="footer__logo footer__logo--white" src="assets/brand/logo-1.png" alt="Мой портал">
+        <img class="footer__logo footer__logo--black" src="assets/brand/logo-2.png" alt="Мой портал">
         <p class="footer__tag">Молодёжный информационный портал Тюмени и Тюменской области. Учредитель — ГАУ ДО ТО «Дворец творчества и спорта „Пионер“».</p>
         <div class="footer__socials" style="margin-top:24px">
           <a href="https://t.me/moi_portal" aria-label="Телеграм" target="_blank" rel="noopener">ТГ</a>
-          <a href="https://vk.com/moiportal" target="_blank" rel="noopener" aria-label="ВКонтакте">ВК</a>
+          <a href="https://vk.ru/moiportal" target="_blank" rel="noopener" aria-label="ВКонтакте">ВК</a>
           <a href="https://www.tiktok.com/@moiportal72" target="_blank" rel="noopener" aria-label="ТикТок">ТТ</a>
-          <a href="https://www.youtube.com/@moi_portal" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+          <a href="https://max.ru" target="_blank" rel="noopener" aria-label="MAX">МАКС</a>
           <a href="mailto:moiporta.l@ya.ru" aria-label="Написать в редакцию"><svg style="width:15px;height:15px" aria-hidden="true"><use href="#i-mail"/></svg></a>
         </div>
       </div>
@@ -436,26 +480,26 @@
         <div>
           <h4>Разделы</h4>
           <a href="index.html">Главное</a>
-          <a href="lenta.html">Лента</a>
+          <a href="lenta/index.html">Лента</a>
           <a href="index.html#razdely">Все разделы</a>
-          <a href="afisha.html">Афиша</a>
-          <a href="services.html">Сервисы</a>
+          <a href="afisha/index.html">Афиша</a>
+          <a href="services/index.html">Сервисы</a>
           <a href="index.html#podpiska">Подписка</a>
         </div>
         <div>
           <h4>Редакция</h4>
-          <a href="page.html?p=about">О портале</a>
-          <a href="page.html?p=rules">Правила и политика</a>
-          <a href="page.html?p=authors">Стать автором</a>
-          <a href="page.html?p=partners">Релизы</a>
-          <a href="page.html?p=partners">Сотрудничество</a>
+          <a href="page/index.html?p=about">О портале</a>
+          <a href="page/index.html?p=rules">Правила и политика</a>
+          <a href="page/index.html?p=authors">Стать автором</a>
+          <a href="page/index.html?p=partners">Релизы</a>
+          <a href="page/index.html?p=partners">Сотрудничество</a>
         </div>
         <div>
           <h4>Документы</h4>
-          <a href="page.html?p=privacy">Политика конфиденциальности</a>
-          <a href="page.html?p=privacy">Пользовательское соглашение</a>
-          <a href="page.html?p=license">Свидетельство СМИ</a>
-          <a href="ui-kit.html">Дизайн-система</a>
+          <a href="page/index.html?p=privacy">Политика конфиденциальности</a>
+          <a href="page/index.html?p=privacy">Пользовательское соглашение</a>
+          <a href="page/index.html?p=license">Свидетельство СМИ</a>
+          <a href="ui-kit/index.html">Дизайн-система</a>
         </div>
       </div>
     </div>
@@ -471,8 +515,10 @@
 
 <script src="assets/js/data.js"></script>
 <script src="assets/js/data2.js"></script>
+<script src="assets/js/blocks.js"></script>
 <script src="assets/js/render.js"></script>
 <script src="assets/js/render2.js"></script>
+<script src="assets/js/ui.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/motion.js"></script>
 </body>
