@@ -770,3 +770,75 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
 .srv-banner h3, .srv-banner__t { font-size: clamp(19px, 2vw, 24px); }
 .ev__foot .meta, .podcast__eps li { font-size: 13.5px; }
 .footer a, .footer .footer__tag, .footer .footer__legal { font-size: 14px; }
+
+/* Соцсети в подвале: «МАКС» помещается в круг */
+.footer__socials a { font-size: 11px !important; letter-spacing: -.01em; }
+.footer__socials a[aria-label="MAX"] { font-size: 9px !important; letter-spacing: -.03em; }
+@media (max-width: 720px) {
+  .footer__socials a { width: 40px; height: 40px; font-size: 11px !important; }
+  .footer__socials a[aria-label="MAX"] { font-size: 9px !important; }
+}
+
+/* Мобильная шапка: подписка на месте, тема — в меню */
+@media (max-width: 720px) {
+  .hdr__actions [data-theme-toggle] { display: none; }
+  .hdr__actions .sub-wrap { display: flex; }
+  .hdr__actions .sub-wrap .btn {
+    height: 36px; padding: 0 14px; font-size: 13px; border-radius: 999px;
+    background: var(--fg); color: var(--bg); border-color: var(--fg);
+    white-space: nowrap;
+  }
+  .hdr__actions { gap: 6px; }
+  .hdr__actions .pod-btn { width: 36px; height: 36px; }
+  .hdr__actions .icon-btn { width: 36px; height: 36px; }
+}
+@media (max-width: 400px) {
+  .hdr__actions .sub-wrap .btn { padding: 0 11px; font-size: 12px; height: 34px; }
+  .hdr__actions .icon-btn[data-search-open] { display: none; }
+}
+
+/* Мобильное меню: раскрывающийся список соцсетей */
+.mmenu__foot { flex-wrap: wrap; }
+.mmenu__socials { display: flex; flex-direction: column; gap: 2px; width: 100%; margin-top: 6px; }
+.mmenu__socials[hidden] { display: none; }
+.mmenu__socials a {
+  padding: 12px 0; border-top: 1px solid var(--line);
+  font-size: 15px; font-weight: 500;
+}
+.mmenu__socials a:first-child { border-top: 0; }
+/* Выпадающее меню в шапке на мобильных — на всю ширину */
+@media (max-width: 720px) {
+  .sub-menu { position: fixed; left: 12px; right: 12px; top: 66px; width: auto; }
+}
+
+/* Соцсети в подвале: ничего не вылезает из круга */
+.footer__socials a {
+  overflow: hidden !important;
+  font-size: 10px !important;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+.footer__socials a[href*="max.ru"] {
+  font-size: 8px !important;
+  letter-spacing: -.06em;
+  font-weight: 800;
+}
+@media (max-width: 720px) {
+  .footer__socials a { width: 42px; height: 42px; font-size: 10px !important; }
+  .footer__socials a[href*="max.ru"] { font-size: 8.5px !important; }
+}
+
+/* Соцсети в подвале — точные селекторы (по aria-label) */
+.footer a[aria-label] {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  letter-spacing: -.02em;
+}
+.footer a[aria-label="MAX"] {
+  font-size: 8px !important;
+  letter-spacing: -.05em !important;
+  font-weight: 800 !important;
+}
+.footer a[aria-label="Telegram"],
+.footer a[aria-label="ВКонтакте"],
+.footer a[aria-label="TikTok"] { font-size: 10.5px !important; }

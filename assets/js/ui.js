@@ -306,4 +306,15 @@
     m.classList.add('is-open');
     document.body.classList.add('is-locked');
   });
+
+  /* --- подписка в мобильном меню: список соцсетей ------------------------- */
+  const mmSub = document.querySelector('[data-mmenu-sub]');
+  if (mmSub) {
+    const list = document.querySelector('.mmenu__socials');
+    mmSub.addEventListener('click', () => {
+      if (!list) return;
+      list.hidden = !list.hidden;
+      mmSub.classList.toggle('is-open', !list.hidden);
+    });
+  }
 })();
