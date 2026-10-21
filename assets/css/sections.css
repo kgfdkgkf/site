@@ -842,3 +842,20 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
 .footer a[aria-label="Telegram"],
 .footer a[aria-label="ВКонтакте"],
 .footer a[aria-label="TikTok"] { font-size: 10.5px !important; }
+
+/* Оранжевая точка у логотипа — на всех экранах */
+.brand__dot { display: inline-block !important; width: 8px; height: 8px; background: var(--signal) !important; border-radius: 50%; margin-left: 3px; transform: translateY(-2px); }
+@media (max-width: 720px) { .brand__dot { width: 7px; height: 7px; margin-left: 2px; } }
+
+/* Точка у логотипа на мобильных — гарантированно через ::after */
+@media (max-width: 720px) {
+  .brand { display: flex; align-items: center; gap: 6px; }
+  .brand__dot { flex: 0 0 auto; }
+  .brand::after {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--signal);
+    display: block; flex: 0 0 7px;
+    margin-left: 3px;
+  }
+}
