@@ -1,0 +1,17 @@
+﻿const list = await (await fetch('http://127.0.0.1:9222/json/list')).json();
+const page = list.find(t => t.type === 'page');
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+let id = 0; const pending = new Map();
+const send = (m, p = {}) => new Promise((res, rej) => { const i = ++id; pending.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method: m, params: p })); });
+ws.addEventListener('message', ev => { const m = JSON.parse(ev.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const fs = await import('node:fs');
+await new Promise(r => ws.addEventListener('open', r));
+await send('Page.enable'); await send('Runtime.enable');
+await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 3, mobile: true });
+await send('Page.navigate', { url: 'http://127.0.0.1:5500/?v=300' }); await sleep(1800);
+const r = await send('Runtime.evaluate', { expression: `JSON.stringify({sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth})`, returnByValue: true });
+console.log(r.result.value);
+const a = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 90, width: 390, height: 70, scale: 3 } });
+fs.writeFileSync('C:/Users/arosl/Desktop/site/_hdr.png', Buffer.from(a.data, 'base64'));
+ws.close();
