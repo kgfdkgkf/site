@@ -187,7 +187,7 @@ window.MP = (function () {
     },
     {
       slug: 'feed',
-      title: 'Лента',
+      title: 'Люди',
       nav: 'Лента',
       accent: '#C77A00',
       glow: 'rgba(199, 122, 0, .18)',

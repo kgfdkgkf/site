@@ -859,3 +859,78 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
     margin-left: 3px;
   }
 }
+
+/* одна точка у логотипа */
+.brand::after { content: none !important; display: none !important; }
+.brand__dot { display: inline-block !important; flex: 0 0 auto; }
+
+.pod-btn {
+  width: auto !important; min-width: 0 !important;
+  padding: 0 14px 0 10px !important;
+  gap: 7px;
+  border-radius: 999px !important;
+  display: inline-flex; align-items: center;
+  font-size: 12px; font-weight: 800; letter-spacing: .06em;
+  color: #fff !important;
+}
+.pod-btn span { line-height: 1; }
+.pod-btn svg { width: 17px; height: 17px; }
+@media (max-width: 720px) {
+  .pod-btn { padding: 0 11px 0 8px !important; font-size: 11px; gap: 5px; }
+  .pod-btn svg { width: 15px; height: 15px; }
+}
+@media (max-width: 400px) { .pod-btn { display: none !important; } }
+
+/* Бегущая строка: на телефоне — сверху, на компе — после первого экрана */
+@media (min-width: 721px) { .marquee--mob { display: none !important; } }
+@media (max-width: 720px) { .marquee--desk { display: none !important; } }
+
+/* Бегущая строка — крупнее и сразу под шапкой */
+.marquee { padding: 14px 0 !important; }
+.marquee__track { gap: 26px; }
+.marquee__item { font-size: clamp(14px, 1.15vw, 17px) !important; letter-spacing: .01em; }
+@media (max-width: 720px) {
+  .marquee { padding: 11px 0 !important; }
+  .marquee__track { gap: 18px; }
+  .marquee__item { font-size: 13.5px !important; }
+}
+
+/* Бегущая строка — прежний размер */
+.marquee { padding: 10px 0 !important; }
+.marquee__track { gap: 18px !important; }
+.marquee__item { font-size: 13px !important; }
+@media (max-width: 720px) { .marquee__item { font-size: 12.5px !important; } }
+
+/* Бегущая строка — компактный размер */
+.marquee { padding: 7px 0 !important; }
+.marquee__track { gap: 13px !important; }
+.marquee__item { font-size: 11.5px !important; letter-spacing: .04em; }
+.marquee__item svg, .marquee__item .dot { transform: scale(.85); }
+@media (max-width: 720px) {
+  .marquee { padding: 6px 0 !important; }
+  .marquee__track { gap: 11px !important; }
+  .marquee__item { font-size: 10.5px !important; }
+}
+
+/* Скорость бегущей строки: контента стало втрое больше — тянем дольше */
+.marquee__track { animation-duration: 140s !important; }
+@media (max-width: 720px) { .marquee__track { animation-duration: 120s !important; } }
+
+/* Бегущая строка: чуть крупнее, чем сейчас */
+.marquee { padding: 9px 0 !important; }
+.marquee__item { font-size: 12.5px !important; }
+.marquee__track { gap: 15px !important; }
+@media (max-width: 720px) {
+  .marquee { padding: 8px 0 !important; }
+  .marquee__item { font-size: 11.5px !important; }
+}
+
+/* Лента тоньше, текст крупнее */
+.marquee { padding: 5px 0 !important; }
+.marquee__item { font-size: 13.5px !important; }
+.marquee__track { gap: 16px !important; }
+@media (max-width: 720px) {
+  .marquee { padding: 4px 0 !important; }
+  .marquee__item { font-size: 12.5px !important; }
+  .marquee__track { gap: 13px !important; }
+}
