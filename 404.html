@@ -25,7 +25,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0B0C'/><circle cx='16' cy='16' r='6' fill='%23FF4416'/>
 </svg>">
 </head>
-<body data-page="404">
+<body data-page="404" data-accent="work">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20.2 20.2 16 16"/></symbol>
@@ -122,7 +122,7 @@
     <a href="feed/index.html">Лента <span>07</span></a>
     <a href="podcasts/index.html">Подкасты <span>08</span></a>
     <a href="services/index.html">Сервисы <span>09</span></a>
-    <a href="lenta/index.html">Все материалы <span>10</span></a>
+    <a href="feed/index.html">Все материалы <span>10</span></a>
   </nav>
   <div class="mmenu__foot">
     <a class="btn btn--sm" href="index.html#podpiska">Подписаться</a>
@@ -137,10 +137,21 @@
         <h1 class="err-page__t">Такой страницы нет</h1>
         <p class="err-page__d">Возможно, ссылка устарела или в адресе опечатка. Зато у нас есть 40 страниц, которые точно работают.</p>
         <div class="err-links">
-          <a class="btn" href="/index.html">На главную</a>
-          <a class="btn btn--ghost" href="/lenta/index.html">Вся лента</a>
-          <a class="btn btn--ghost" href="/afisha/index.html">Афиша</a>
-          <a class="btn btn--ghost" href="/services/index.html">Сервисы</a>
+          <a class="btn" href="index.html">На главную</a>
+          <a class="btn btn--ghost" href="feed/index.html">Вся лента</a>
+        </div>
+        <form class="err-search" onsubmit="return false" data-err-search>
+          <svg aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" placeholder="Или найди, что искал: вакансии, гранты, афиша" aria-label="Поиск по порталу">
+        </form>
+        <div class="err-chips">
+          <a href="work/index.html">Работа</a>
+          <a href="study/index.html">Учёба</a>
+          <a href="afisha/index.html">Афиша</a>
+          <a href="psy/index.html">Психология</a>
+          <a href="opp/index.html">Возможности</a>
+          <a href="feed/index.html">Люди</a>
+          <a href="services/index.html">Сервисы</a>
         </div>
       </div>
     </div>
@@ -164,7 +175,7 @@
         <div>
           <h4>Разделы</h4>
           <a href="index.html">Главное</a>
-          <a href="lenta/index.html">Лента</a>
+          <a href="feed/index.html">Лента</a>
           <a href="index.html#razdely">Все разделы</a>
           <a href="afisha/index.html">Афиша</a>
           <a href="services/index.html">Сервисы</a>
@@ -175,15 +186,12 @@
           <a href="page/index.html?p=about">О портале</a>
           <a href="page/index.html?p=rules">Правила и политика</a>
           <a href="page/index.html?p=authors">Стать автором</a>
-          <a href="page/index.html?p=partners">Релизы</a>
           <a href="page/index.html?p=partners">Сотрудничество</a>
         </div>
         <div>
           <h4>Документы</h4>
           <a href="page/index.html?p=privacy">Политика конфиденциальности</a>
-          <a href="page/index.html?p=privacy">Пользовательское соглашение</a>
           <a href="page/index.html?p=license">Свидетельство СМИ</a>
-          <a href="ui-kit/index.html">Дизайн-система</a>
         </div>
       </div>
     </div>

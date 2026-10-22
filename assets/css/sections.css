@@ -1037,3 +1037,56 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
   .hero-card__media { aspect-ratio: 4 / 3 !important; }
   .hero-card__title { -webkit-line-clamp: 4; min-height: calc(1.08em * 4); max-height: calc(1.08em * 4); }
 }
+
+/* ===== 404 ===== */
+.err-page { min-height: 70vh; }
+.err-page__n {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(120px, 22vw, 260px); line-height: .8; letter-spacing: -.07em;
+  background: linear-gradient(160deg, var(--acc) 0%, var(--fg) 70%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: errIn .7s cubic-bezier(.33,.1,.25,1) both;
+}
+.err-page__t { margin-top: 4px; }
+.err-page__d { font-size: 17px; max-width: 44ch; }
+.err-links { margin-bottom: 18px; }
+.err-search {
+  display: flex; align-items: center; gap: 10px;
+  width: min(520px, 100%); margin: 0 auto 18px;
+  padding: 0 18px; height: 56px;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: var(--card);
+  transition: border-color .2s, box-shadow .2s;
+}
+.err-search:focus-within { border-color: var(--acc); box-shadow: 0 0 0 4px var(--acc-glow); }
+.err-search svg { width: 18px; height: 18px; color: var(--muted); flex: none; }
+.err-search input {
+  flex: 1; border: 0; background: none; outline: none;
+  font-size: 15px; color: var(--fg); font-family: var(--f-text);
+}
+.err-search input::placeholder { color: var(--muted); }
+.err-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.err-chips a {
+  padding: 9px 15px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card);
+  font-size: 13.5px; font-weight: 500; color: var(--fg-2);
+  transition: all .2s var(--ease);
+}
+.err-chips a:hover { border-color: var(--acc); color: var(--acc); transform: translateY(-2px); }
+@keyframes errIn { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 720px) {
+  .err-page { min-height: 60vh; padding-top: 30px; }
+  .err-page__n { font-size: clamp(88px, 26vw, 130px); }
+  .err-search { height: 50px; }
+  .err-chips a { padding: 8px 12px; font-size: 12.5px; }
+}
+
+/* Подвал: подчёркивание при наведении */
+.footer a { text-decoration: none; transition: color .2s var(--ease); }
+.footer a:hover, .footer a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.footer__socials a:hover { text-decoration: none; }

@@ -221,7 +221,7 @@
       <div class="auth-profile" hidden>
         <div class="auth-profile__name"></div>
         <div class="auth-profile__mail meta"></div>
-        <a class="btn btn--ghost btn--sm" href="lenta/index.html">Сохранённое</a>
+        <a class="btn btn--ghost btn--sm" href="feed/index.html">Сохранённое</a>
         <button class="btn btn--sm" type="button" data-auth-out>Выйти</button>
       </div>
     </div>`;

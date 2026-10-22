@@ -105,7 +105,7 @@
         <div class="wrap">
           <div class="section-head-inline">
             <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Материалы по теме</h2>
-            <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
+            <a class="link-more" href="feed/index.html">Вся лента ${ICON}</a>
           </div>
           <div class="grid g3" data-stagger>${rel.map(a => cardHTML(a, { reveal: true })).join('')}</div>
         </div>
@@ -223,13 +223,13 @@
 
         <div class="section-head-inline">
           <h2 class="h3" style="font-family:var(--f-display);font-weight:700;letter-spacing:-.02em">Материалы раздела</h2>
-          <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
+          <a class="link-more" href="feed/index.html">Вся лента ${ICON}</a>
         </div>
 
         <div class="grid g3" data-stagger>${cards}</div>
 
         <div class="load-more">
-          <a class="btn btn--ghost magnet" href="lenta/index.html">Смотреть все материалы</a>
+          <a class="btn btn--ghost magnet" href="feed/index.html">Смотреть все материалы</a>
         </div>
       </div>
 
@@ -378,7 +378,7 @@
               <span class="section__num">Дальше</span>
               <div><h2 class="section__title">Читайте также</h2></div>
             </div>
-            <a class="link-more" href="lenta/index.html">Вся лента ${ICON}</a>
+            <a class="link-more" href="feed/index.html">Вся лента ${ICON}</a>
           </div>
           <div class="grid g3" data-stagger>
             ${articles.filter(x => x.id !== a.id).slice(3, 6).map(x => cardHTML(x, { reveal: true })).join('')}
