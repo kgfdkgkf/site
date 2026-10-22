@@ -1188,3 +1188,29 @@ button:active, .btn:active, .pod-btn:active, .icon-btn:active, .chip:active, .re
 }
 .btn:hover, .pod-btn:hover, .chip:hover { transform: none; }
 ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+
+/* Каждый пункт меню — своим цветом */
+.nav a:nth-child(1):hover, .nav a:nth-child(1).is-active { color: #FF4416; }
+.nav a:nth-child(2):hover, .nav a:nth-child(2).is-active { color: #2563EB; }
+.nav a:nth-child(3):hover, .nav a:nth-child(3).is-active { color: #7C3AED; }
+.nav a:nth-child(4):hover, .nav a:nth-child(4).is-active { color: #DB2777; }
+.nav a:nth-child(5):hover, .nav a:nth-child(5).is-active { color: #0E9F7E; }
+.nav a:nth-child(6):hover, .nav a:nth-child(6).is-active { color: #D97706; }
+.nav a:nth-child(7):hover, .nav a:nth-child(7).is-active { color: #0891B2; }
+
+.nav a:nth-child(1).is-active::after { background: #FF4416; }
+.nav a:nth-child(2).is-active::after { background: #2563EB; }
+.nav a:nth-child(3).is-active::after { background: #7C3AED; }
+.nav a:nth-child(4).is-active::after { background: #DB2777; }
+.nav a:nth-child(5).is-active::after { background: #0E9F7E; }
+.nav a:nth-child(6).is-active::after { background: #D97706; }
+.nav a:nth-child(7).is-active::after { background: #0891B2; }
+
+.mmenu nav a:nth-child(1):hover, .mmenu nav a:nth-child(1).is-active { color: #FF4416; }
+.mmenu nav a:nth-child(2):hover, .mmenu nav a:nth-child(2).is-active { color: #2563EB; }
+.mmenu nav a:nth-child(3):hover, .mmenu nav a:nth-child(3).is-active { color: #7C3AED; }
+.mmenu nav a:nth-child(4):hover, .mmenu nav a:nth-child(4).is-active { color: #DB2777; }
+.mmenu nav a:nth-child(5):hover, .mmenu nav a:nth-child(5).is-active { color: #0E9F7E; }
+.mmenu nav a:nth-child(6):hover, .mmenu nav a:nth-child(6).is-active { color: #D97706; }
+.mmenu nav a:nth-child(7):hover, .mmenu nav a:nth-child(7).is-active { color: #0891B2; }
+.mmenu nav a:nth-child(8):hover, .mmenu nav a:nth-child(8).is-active { color: #FF4416; }
