@@ -934,3 +934,35 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
   .marquee__item { font-size: 12.5px !important; }
   .marquee__track { gap: 13px !important; }
 }
+
+/* Логотип в мобильном меню — крупнее */
+@media (max-width: 720px) {
+  .mmenu .brand__logo, .mmenu__head .brand__logo, .mmenu .brand img { height: 38px !important; }
+  .mmenu .brand, .mmenu__head .brand { gap: 8px; }
+  .mmenu .brand__dot, .mmenu__head .brand__dot { width: 8px; height: 8px; }
+}
+
+/* Логотип в меню — по весу как пункты */
+@media (max-width: 720px) {
+  .mmenu .brand__logo, .mmenu__head .brand__logo, .mmenu .brand img { height: 52px !important; }
+  .mmenu .brand__dot, .mmenu__head .brand__dot { width: 10px; height: 10px; }
+}
+
+@media (max-width: 720px) {
+  .mmenu .brand__logo, .mmenu__head .brand__logo, .mmenu .brand img { height: 64px !important; }
+  .mmenu .brand, .mmenu__head .brand { gap: 10px; }
+  .mmenu .brand__dot, .mmenu__head .brand__dot { width: 11px; height: 11px; }
+}
+
+/* Логотип в мобильном меню — это текст .brand__word */
+@media (max-width: 720px) {
+  .mmenu .brand__word, .mmenu__top .brand__word {
+    font-family: var(--f-display);
+    font-size: 27px !important;
+    font-weight: 800;
+    letter-spacing: -.035em;
+    line-height: 1;
+    color: var(--fg);
+  }
+  .mmenu .brand__dot, .mmenu__top .brand__dot { width: 9px; height: 9px; margin-left: 4px; }
+}
