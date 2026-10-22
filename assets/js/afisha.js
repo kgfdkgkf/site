@@ -44,6 +44,17 @@
   const counter = $('[data-filter-count]');
   if (counter) counter.textContent = events.length;
 
+  /* --- счётчики следуют за фильтрами -------------------------------------- */
+  function recount() {
+    const vis = Array.from(document.querySelectorAll('.ev[data-id]')).filter(el => el.offsetParent !== null);
+    set('evCount', vis.length);
+    set('evFree', vis.filter(el => el.dataset.price === 'free').length);
+    set('evTrips', vis.filter(el => el.dataset.cat === 'trip').length);
+  }
+  document.addEventListener('click', e => {
+    if (e.target.closest('.filters') || e.target.closest('.cal')) setTimeout(recount, 90);
+  });
+
   /* --- календарь --------------------------------------------------------- */
   const mount = document.getElementById('calMount');
   if (!mount) return;
@@ -91,7 +102,69 @@
       if (m2 < 0) { m2 = 11; y2--; }
       if (m2 > 11) { m2 = 0; y2++; }
       state = { y: y2, m: m2 };
-      draw();
+    
+
+  /* podbInit: подборки считаются по карточкам и фильтруют те же карточки */
+  (function podbInit() {
+    const box = document.querySelector('.podb');
+    if (!box) return;
+    const RULES = {
+      low: d => d.price === 'low',
+      party: d => ['party', 'music', 'kino', 'sport'].includes(d.cat),
+      lecture: d => ['lecture', 'master', 'meeting'].includes(d.cat),
+      free: d => d.price === 'free'
+    };
+    const plural = n => {
+      const a = Math.abs(n) % 100, b = a % 10;
+      if (a > 10 && a < 20) return 'идей';
+      if (b === 1) return 'идея';
+      if (b >= 2 && b <= 4) return 'идеи';
+      return 'идей';
+    };
+    const cards = () => Array.from(document.querySelectorAll('.ev[data-id]'));
+
+    Array.from(box.querySelectorAll('a')).forEach(a => {
+      const key = (a.getAttribute('href').match(/f=(\w+)/) || [])[1];
+      const rule = RULES[key];
+      if (!rule) return;
+      const n = cards().filter(c => rule(c.dataset)).length;
+      const cnt = a.querySelector('.n');
+      if (cnt) cnt.textContent = n + ' ' + plural(n);
+      a.setAttribute('href', '#eventsGrid');
+      a.addEventListener('click', ev => {
+        ev.preventDefault();
+        cards().forEach(c => { c.style.display = rule(c.dataset) ? '' : 'none'; });
+        recount();
+        const g = document.getElementById('eventsGrid');
+        if (g) g.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const sub = document.querySelector('.section__sub');
+    if (sub && /событи/.test(sub.textContent)) {
+      sub.textContent = 'Готовые подборки — чтобы не листать ' + cards().length + ' событий в поисках «куда сходить с кем»';
+    }
+  })();
+
+  /* calDelegated: клики по дням любого месяца */
+  mount.addEventListener('click', ev => {
+    const btn = ev.target.closest('.cal__d[data-value], .cal .chip[data-value]');
+    if (!btn) return;
+    ev.preventDefault();
+    const val = btn.dataset.value;
+    mount.querySelectorAll('.cal__d, .cal .chip').forEach(x => {
+      x.classList.toggle('is-active', x === btn);
+      x.classList.remove('is-on');
+    });
+    btn.classList.add('is-active');
+    document.querySelectorAll('[data-filter-item]').forEach(el => {
+      const show = val === 'all' || el.getAttribute('data-date') === val;
+      el.style.display = show ? '' : 'none';
+    });
+    recount();
+  });
+
+  draw();
     }));
   }
 

@@ -249,6 +249,15 @@
   const closeAuth = () => { modal.classList.remove('is-open'); document.body.classList.remove('is-locked'); };
 
   authBtn.addEventListener('click', openAuth);
+  /* delegatedAuth: любые кнопки [data-auth-open] на странице */
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-auth-open]');
+    if (!t) return;
+    e.preventDefault();
+    document.querySelectorAll('.mmenu.is-open, .mmenu--open').forEach(m => m.classList.remove('is-open', 'is-menu-open'));
+    document.body.classList.remove('menu-open', 'is-locked');
+    openAuth();
+  });
   modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('[data-auth-close]')) closeAuth(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAuth(); });
 
@@ -270,6 +279,7 @@
     user = { name: f.dataset.authForm === 'up' ? name : (email.split('@')[0]), email: email };
     localStorage.setItem(AUTH_KEY, JSON.stringify(user));
     paintAuth();
+    document.dispatchEvent(new Event('mp:auth'));
     f.reset();
     if (window.mpToast) window.mpToast('Добро пожаловать, ' + user.name);
     openAuth();
@@ -280,6 +290,7 @@
       user = null;
       localStorage.removeItem(AUTH_KEY);
       paintAuth();
+      document.dispatchEvent(new Event('mp:auth'));
       closeAuth();
       if (window.mpToast) window.mpToast('Вы вышли из аккаунта');
     }
@@ -368,5 +379,43 @@
       a.classList.toggle('is-active', on);
     });
     if (!matched) links.forEach(a => a.classList.remove('is-active'));
+  })();
+
+  /* --- афиша на главной: актуальные даты и события ------------------------ */
+  (function homeAfisha() {
+    const sec = document.getElementById('afisha');
+    if (!sec || !MP || !MP.events) return;
+    const evs = MP.events.slice(0, 3);
+    if (!evs.length) return;
+
+    const sub = sec.querySelector('.section__sub');
+    if (sub) {
+      const free = MP.events.filter(e => e.price === 'free').length;
+      sub.textContent = evs[0].date + ' – ' + MP.events[2].date + ' · ' +
+        MP.events.length + ' событий, из них ' + free + ' — бесплатно';
+    }
+
+    const CAT = { music: 'Музыка', lecture: 'Лекция', kino: 'Кино', master: 'Мастер-класс',
+                  meeting: 'Встреча', sport: 'Спорт', party: 'Вечеринка', trip: 'Поездка' };
+    const grid = sec.querySelector('.events');
+    if (grid) {
+      grid.innerHTML = evs.map(e => `
+        <a class="ev reveal is-in" href="event/index.html?id=${e.id}">
+          <div class="ev__media">
+            <div class="ev__date"><b>${e.dayNum}</b><span>${e.mon}</span></div>
+            ${e.price === 'free' ? '<span class="sticker sticker-abs sticker-abs--br">Бесплатно</span>' : ''}
+            <img src="assets/img/${e.img}" alt="${e.title}" loading="lazy">
+          </div>
+          <div class="ev__body">
+            <span class="rubric">${CAT[e.cat] || 'Событие'}</span>
+            <h3 class="ev__title">${e.title}</h3>
+            <p class="ev__place">${e.place}</p>
+            <div class="ev__foot">
+              <span class="price${e.price === 'free' ? ' price--free' : ''}">${e.priceLabel}</span>
+              <span class="meta">${e.time}</span>
+            </div>
+          </div>
+        </a>`).join('');
+    }
   })();
 })();

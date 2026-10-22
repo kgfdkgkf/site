@@ -156,7 +156,7 @@
 .nav a.is-active::before { display: none; }
 
 /* --- 11. Переходы между страницами --------------------------------------- */
-@view-transition { navigation: auto; }
+/* view transitions отключены: давали задержку */
 ::view-transition { background-color: var(--bg); }
 ::view-transition-old(root) { animation: vt-out .24s var(--ease) both; background-color: var(--bg); }
 ::view-transition-new(root) { animation: vt-in .38s var(--ease-out) both; background-color: var(--bg); }
