@@ -116,7 +116,9 @@
     function go(n, manual) {
       idx = (n + slides.length) % slides.length;
       const a = slides[idx];
-      heroCard.classList.add('is-swap');
+      const pre = new Image();
+      pre.src = 'assets/img/' + a.img;
+      heroCard.classList.remove('is-anim'); void heroCard.offsetWidth; heroCard.classList.add('is-anim');
       setTimeout(() => {
         if (img) img.src = 'assets/img/' + a.img;
         if (title) title.textContent = a.title;
@@ -124,7 +126,7 @@
         if (meta) meta.innerHTML = a.date + '<span class="dot"></span>' + a.minutes + ' минут<span class="dot"></span>' + a.views;
         if (sticker) sticker.textContent = a.sticker || 'Свежее';
         heroCard.href = 'article/index.html?id=' + a.id;
-        heroCard.classList.remove('is-swap');
+        heroCard.classList.remove('is-anim');
         paintDots();
       }, 260);
       if (manual) restart();
@@ -132,6 +134,19 @@
 
     function start() { clearInterval(timer); timer = setInterval(() => go(idx + 1), 4000); }
     function restart() { start(); }
+    let tx = 0, ty = 0;
+    heroCard.addEventListener('touchstart', e => {
+      const t = e.touches[0]; tx = t.clientX; ty = t.clientY;
+      clearInterval(timer);
+    }, { passive: true });
+    heroCard.addEventListener('touchend', e => {
+      const t = e.changedTouches[0];
+      const dx = t.clientX - tx, dy = t.clientY - ty;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        go(idx + (dx < 0 ? 1 : -1), true);
+      }
+      start();
+    }, { passive: true });
     heroCard.addEventListener('mouseenter', () => clearInterval(timer));
     heroCard.addEventListener('mouseleave', start);
     document.addEventListener('visibilitychange', () => {
@@ -317,4 +332,41 @@
       mmSub.classList.toggle('is-open', !list.hidden);
     });
   }
+
+  /* --- кнопка «наверх» ---------------------------------------------------- */
+  const toTop = document.createElement('button');
+  toTop.className = 'to-top';
+  toTop.type = 'button';
+  toTop.setAttribute('aria-label', 'Наверх');
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    [250, 600, 1000].forEach(ms => setTimeout(() => {
+      if (window.scrollY > 4) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.scrollTo(0, 0);
+      }
+    }, ms));
+  });
+  const toggleTop = () => toTop.classList.toggle('is-on', window.scrollY > 700);
+  window.addEventListener('scroll', toggleTop, { passive: true });
+  toggleTop();
+
+  /* --- активный пункт меню по адресу -------------------------------------- */
+  (function () {
+    const here = location.pathname.replace(/index\.html$/, '').replace(/\/$/, '');
+    const links = document.querySelectorAll('.nav a, .mmenu nav a');
+    let matched = false;
+    links.forEach(a => {
+      const p = new URL(a.href, document.baseURI).pathname.replace(/index\.html$/, '').replace(/\/$/, '');
+      const on = p === here && here !== '';
+      if (on) matched = true;
+      a.classList.toggle('is-active', on);
+    });
+    if (!matched) links.forEach(a => a.classList.remove('is-active'));
+  })();
 })();

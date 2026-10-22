@@ -53,7 +53,8 @@
     rail.className = 'rail';
     rail.setAttribute('aria-label', 'Навигация по странице');
     sections.forEach(sec => {
-      const title = sec.dataset.rail || (sec.querySelector('.section__title') || {}).textContent || sec.id;
+      const RU = { glavnoe: 'Главное', svezhie: 'Свежее', razdely: 'Разделы', afisha: 'Афиша', podpiska: 'Подписка' };
+      const title = sec.dataset.rail || (sec.querySelector('.section__title') || {}).textContent || RU[sec.id] || sec.id;
       const a = document.createElement('a');
       a.href = '#' + sec.id;
       a.innerHTML = '<span>' + title.trim().slice(0, 22) + '</span><i></i>';

@@ -1,0 +1,14 @@
+﻿const list = await (await fetch('http://127.0.0.1:9222/json/list')).json();
+const page = list.find(t => t.type === 'page');
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+let id = 0; const pending = new Map();
+const send = (m, p = {}) => new Promise((res, rej) => { const i = ++id; pending.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method: m, params: p })); });
+ws.addEventListener('message', ev => { const m = JSON.parse(ev.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+await new Promise(r => ws.addEventListener('open', r));
+await send('Page.enable'); await send('Runtime.enable');
+await send('Page.navigate', { url: 'http://127.0.0.1:5500/?v=250' }); await sleep(1500);
+await send('Runtime.evaluate', { expression: `window.scrollTo(0, 900); new Promise(r=>setTimeout(r,600))`, awaitPromise: true });
+const r = await send('Runtime.evaluate', { expression: `JSON.stringify(Array.from(document.querySelectorAll('.rail a')).map(a=>a.textContent.trim()+ '|' + (a.getAttribute('aria-label')||'')))`, returnByValue: true });
+console.log(r.result.value);
+ws.close();

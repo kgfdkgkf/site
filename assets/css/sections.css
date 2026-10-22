@@ -357,8 +357,6 @@ body[data-accent] .page-head .rubric { color: var(--fg); }
   transition: all .25s var(--ease);
 }
 .hero-dots button.is-on { width: 22px; border-radius: 4px; background: var(--signal); }
-.hero-card.is-swap { opacity: 0; transform: translateY(6px); }
-.hero-card { transition: opacity .26s cubic-bezier(.4,0,.2,1), transform .26s cubic-bezier(.4,0,.2,1), border-color .25s; }
 
 /* Акцент по умолчанию — оранжевый (главная) */
 body { --acc: var(--signal); --acc-glow: rgba(255, 68, 22, .20); }
@@ -970,3 +968,72 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
 /* Полоса ниже, текст без изменений */
 .marquee { padding: 2px 0 !important; }
 @media (max-width: 720px) { .marquee { padding: 1px 0 !important; } }
+
+/* Плавная смена новости в первом экране */
+.hero-card__media img { transition: transform .6s cubic-bezier(.33,.1,.25,1); }
+
+/* Плавная смена: мягкое затухание без сдвига */
+
+/* Смена новости: уезжает влево, приходит справа */
+
+/* Смена новости: уезжает влево, приходит справа */
+.hero-card {
+  transition: transform .34s cubic-bezier(.4,0,.2,1), opacity .34s cubic-bezier(.4,0,.2,1), border-color .25s;
+}
+.hero-card.is-out { transform: translateX(-56px); opacity: 0; }
+
+/* Смена новости: анимация целиком в CSS */
+@keyframes heroSwap {
+  0%   { transform: translateX(0);     opacity: 1; }
+  42%  { transform: translateX(-58px); opacity: 0; }
+  50%  { transform: translateX(58px);  opacity: 0; }
+  100% { transform: translateX(0);     opacity: 1; }
+}
+.hero-card.is-anim { animation: heroSwap .62s cubic-bezier(.4,0,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .hero-card.is-anim { animation: none; } }
+
+/* Анимация через translate — не конфликтует с transform: none !important у .reveal */
+@keyframes heroSwap2 {
+  0%   { translate: 0 0;       opacity: 1; }
+  42%  { translate: -58px 0;   opacity: 0; }
+  50%  { translate: 58px 0;    opacity: 0; }
+  100% { translate: 0 0;       opacity: 1; }
+}
+.hero-card.is-anim { animation: heroSwap2 .62s cubic-bezier(.4,0,.2,1) both !important; transform: none !important; }
+.hero-card.is-anim img { animation: none !important; }
+
+/* Кнопка «наверх» в правом рельсе */
+.to-top {
+  position: fixed; right: 18px; bottom: 26px; z-index: 70;
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--card); color: var(--fg);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(0,0,0,.16);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s, border-color .2s;
+}
+.to-top.is-on { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { border-color: var(--acc); color: var(--acc); }
+.to-top svg { width: 18px; height: 18px; }
+@media (max-width: 720px) {
+  .to-top { right: 12px; bottom: 16px; width: 44px; height: 44px; }
+  .to-top svg { width: 16px; height: 16px; }
+}
+
+/* Карточка новости не меняет высоту при смене — страница не «едет» */
+.hero-card { min-height: 0; }
+.hero-card__media { aspect-ratio: 16 / 10 !important; overflow: hidden; }
+.hero-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.08em * 3);
+  max-height: calc(1.08em * 3);
+}
+@media (max-width: 720px) {
+  .hero-card__media { aspect-ratio: 4 / 3 !important; }
+  .hero-card__title { -webkit-line-clamp: 4; min-height: calc(1.08em * 4); max-height: calc(1.08em * 4); }
+}
