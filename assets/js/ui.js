@@ -418,4 +418,37 @@
         </a>`).join('');
     }
   })();
+
+  /* expandFeed: «Смотреть все материалы» догружает новости, а не уводит */
+  (function expandFeed() {
+    const more = document.querySelector('.load-more a');
+    const grid = Array.from(document.querySelectorAll('.grid.g3')).pop();
+    if (!more || !grid || !MP || !MP.articles) return;
+
+    more.addEventListener('click', e => {
+      e.preventDefault();
+      const gridLinks = Array.from(grid.querySelectorAll('a[href*="article/index.html"]'));
+      const shown = new Set(gridLinks.map(a => new URL(a.getAttribute('href'), document.baseURI).searchParams.get('id')));
+      const rest = MP.articles.filter(a => !shown.has(a.id));
+
+      if (!rest.length) {
+        more.textContent = 'Показаны все материалы';
+        more.style.opacity = '.6';
+        more.style.pointerEvents = 'none';
+        return;
+      }
+      grid.insertAdjacentHTML('beforeend', rest.map(a => `
+        <a class="card reveal is-in" href="article/index.html?id=${a.id}">
+          <div class="card__media"><img src="assets/img/${a.img}" alt="${a.title}" loading="lazy"></div>
+          <div class="card__body">
+            <span class="rubric">${a.rubric}</span>
+            <h3 class="card__title">${a.title}</h3>
+            <p class="meta">${a.minutes} минут</p>
+          </div>
+        </a>`).join(''));
+      more.textContent = 'Все материалы показаны';
+      more.style.opacity = '.6';
+      more.style.pointerEvents = 'none';
+    });
+  })();
 })();
