@@ -966,3 +966,7 @@ main { animation: mpPageIn .55s cubic-bezier(.22,.61,.24,1) both; }
   }
   .mmenu .brand__dot, .mmenu__top .brand__dot { width: 9px; height: 9px; margin-left: 4px; }
 }
+
+/* Полоса ниже, текст без изменений */
+.marquee { padding: 2px 0 !important; }
+@media (max-width: 720px) { .marquee { padding: 1px 0 !important; } }
